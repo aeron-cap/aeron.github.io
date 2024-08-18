@@ -7,29 +7,19 @@ const Navbar = () => {
     <div className="grid">
       <div className="grid fixed gap-14 w-10 h-screen content-center p-16">
         <div className="flex flex-row gap-3">
-          <button className="pointer-events-auto opacity-40 hover:opacity-100 focus:opacity-100">
-            About
-          </button>
+          <button className="pointer-events-auto">About</button>
         </div>
         <div className="flex flex-row gap-3">
-          <button className="pointer-events-auto opacity-40 hover:opacity-100 focus:opacity-100">
-            Experience
-          </button>
+          <button className="pointer-events-auto">Experience</button>
         </div>
         <div className="flex flex-row gap-3">
-          <button className="pointer-events-auto opacity-40 hover:opacity-100 focus:opacity-100">
-            Projects
-          </button>
+          <button className="pointer-events-auto">Projects</button>
         </div>
         <div className="flex flex-row gap-3">
-          <button className="pointer-events-auto opacity-40 hover:opacity-100 focus:opacity-100">
-            Skills
-          </button>
+          <button className="pointer-events-auto">Skills</button>
         </div>
         <div className="flex flex-row gap-3">
-          <button className="pointer-events-auto opacity-40 hover:opacity-100 focus:opacity-100">
-            Resume
-          </button>
+          <button className="pointer-events-auto">Resume</button>
         </div>
       </div>
     </div>

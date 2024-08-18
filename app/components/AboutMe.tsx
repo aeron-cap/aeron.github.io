@@ -1,12 +1,76 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import {
+  Button,
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
 
 const AboutMe = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function open() {
+    setIsOpen(true);
+  }
+
+  function close() {
+    setIsOpen(false);
+  }
+
   return (
-    <div className="py-6">
-      <button>
-        <i className="py-1">About Me</i>
-      </button>
-    </div>
+    <main>
+      <div>
+        <Button
+          onClick={() => setIsOpen(true)}
+          id="AboutMe"
+          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          About Me
+        </Button>
+      </div>
+      <Dialog
+        open={isOpen}
+        as="div"
+        className="relative z-10 focus:outline-none"
+        onClose={close}
+      >
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="w-full max-w-md rounded-xl bg-black/40 p-6 backdrop-blur-3xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+            >
+              <DialogTitle as="h3" className="text-base/7 text-white font-bold">
+                About Me
+              </DialogTitle>
+              <p className="mt-2 text-sm/6 text-white/75">
+                A graduate of Computer Engineering from Batangas State
+                University The National Engineering University - Alangilan last
+                August 2024. Programming and developing solutions to modern
+                problems has always been my passion. With essentially having 0
+                job experience, having a taste of the real-world feeling of IT
+                and Engineering through my recent internship at a tech solutions
+                company, it opened my eyes to a more wider and mature way of
+                handling challenges. <br></br>
+                <br></br>Recently, I have been starting to re-learn concepts and
+                fundamentals like Java Frameworks, Python libraries, SQL, and
+                Web development (HTML, CSS, JavaScript) frameworks and tech
+                stacks . My main focus as of now is to learn Java Spring, learn
+                implementation of REST APIs to my projects, and generally
+                develop more projects. In the near future, I also want to learn
+                and dive into the world of AI, DevOps, and CyberSecurity.
+                <br></br>
+                <br></br>When I am not on VS Code, I usually hang out with my
+                gf, play Pokemon, watch Anime, dabbling in digital art, or
+                working out.
+              </p>
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
+    </main>
   );
 };
 

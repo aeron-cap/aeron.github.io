@@ -1,12 +1,15 @@
-'use client';
-import React from 'react'
+"use client";
+import React from "react";
 
 const Experience = () => {
   return (
-    <div>
-        <button onClick={() => console.log('Click')}>Click</button>
-    </div>
-  )
-}
+    <main className="grid grid-cols-2 grid-rows-2 gap-4">
+      <div className="">
+        <p className="text-5xl text-center font-bold">Experience</p>
+      </div>
+      <div></div>
+    </main>
+  );
+};
 
-export default Experience
+export default Experience;
