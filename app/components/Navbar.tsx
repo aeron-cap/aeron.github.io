@@ -5,7 +5,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <div className="grid">
-      <div className="grid fixed gap-14 w-10 h-screen content-center p-16">
+      <div className="bg-gradient-to-r from-black/50 to-transparent backdrop-blur-3xl grid fixed gap-14 w-fit h-screen content-center pl-16 pr-11">
         <div className="flex flex-row gap-3">
           <button className="pointer-events-auto">About</button>
         </div>

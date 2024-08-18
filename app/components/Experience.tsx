@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
+import ExperienceCards from "./ExperienceCards";
 
 const Experience = () => {
   return (
-    <main className="grid grid-cols-2 grid-rows-2 gap-4">
-      <div className="">
-        <p className="text-5xl text-center font-bold">Experience</p>
+    <main className="flex flex-col h-screen w-screen px-40">
+      <div className="pt-16 pl-24">
+        <p className="text-8xl text-left font-bold">Experience</p>
       </div>
-      <div></div>
+      <div className="pt-8 pl-24">
+        <ExperienceCards />
+      </div>
     </main>
   );
 };
