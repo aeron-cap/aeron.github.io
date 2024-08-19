@@ -1,40 +1,41 @@
 "use-client";
 import React from "react";
 
-const experienceData = [
+const projectData = [
   {
     id: 1,
+    date: "February 2024 - May 2024",
+    image: "/assets/gmail-logo.png",
     position: "Web Developer Intern",
-    duration: "February 2024 - May 2024",
+
     company: "Accur8 Enterprise Solutions Inc.",
     link: "https://www.aesiph.com/",
-    description:
-      "Developed a Billing Generation web application that the company will use to send billing information to its clients. Specifically assigned as one of the back-end developers to the project by using JavaScript, Postman, Docker, and MongoDB to verify API functionality, while following the Clean Architecture technique. Worked on creating the documentation for the Back-end, and for the Front-end to use as a reference.",
-    tags: [
-      "MongoDB",
-      "Express",
-      "React",
-      "Node",
-      "Git",
-      "GitHub",
-      "Postman",
-      "Docker",
-      "Cypress",
-      "Figma",
-    ],
+    description: "",
+    tags: ["MongoDB", "Express"],
+  },
+  {
+    id: 1,
+    date: "February 2024 - May 2024",
+    image: "HTML-logo.png",
+    position: "Web Developer Intern",
+
+    company: "Accur8 Enterprise Solutions Inc.",
+    link: "https://www.aesiph.com/",
+    description: "",
+    tags: ["MongoDB", "Express"],
   },
 ];
 
-const ExperienceCards = () => {
-  return experienceData.map((x) => {
+const ProjectCards = () => {
+  return projectData.map((x) => {
     return (
-      <div className="flex flex-row pb-8">
-        <div className="flex flex-col rounded-lg bg-white dark:bg-black/40 backdrop-blur-2xl md:max-w-6xl md:flex-row">
-          <div className="flex flex-col justify-start p-6 w-screen">
+      <div className="pb-8">
+        <div className="flex flex-col rounded-lg w-full bg-white dark:bg-black/40 backdrop-blur-2xl md:max-w-6xl md:flex-row">
+          <div className="flex flex-col justify-start p-6 ">
             <i className="text-m text-neutral-500 dark:text-neutral-300">
               {x.position}
             </i>
-            <a className="text-xs w-fit">{x.duration}</a>
+            <a className="text-xs w-fit">{x.date}</a>
             <a
               className="after:content-['_↗'] mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50"
               href={x.link}
@@ -61,4 +62,4 @@ const ExperienceCards = () => {
   });
 };
 
-export default ExperienceCards;
+export default ProjectCards;

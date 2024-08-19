@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Experience from "./components/Experience";
-import Me from "./components/Me";
 import Navbar from "./components/Navbar";
+import Me from "./aboutme/page";
+import Experience from "./experience/page";
+import Projects from "./projects/page";
 
 export default function Home() {
   return (
@@ -12,6 +12,7 @@ export default function Home() {
       <div>
         <Me />
         <Experience />
+        <Projects />
       </div>
     </div>
   );

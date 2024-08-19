@@ -1,5 +1,5 @@
 import React from "react";
-import AboutMe from "./AboutMe";
+import AboutMe from "../components/AboutMe";
 
 const Me = () => {
   return (
@@ -22,14 +22,20 @@ const Me = () => {
         <a href="https://github.com/aeron-cap" target="_blank">
           <img
             src="/assets/github-logo.png"
-            className="size-10 grayscale invert"
+            className="size-10 grayscale invert transition-opacity hover:opacity-100 opacity-60"
           />
         </a>
         <a href="mailto:aeroncaponpon.01@gmail.com" target="_blank">
-          <img src="/assets/gmail-logo.png" className="size-10 grayscale" />
+          <img
+            src="/assets/gmail-logo.png"
+            className="size-10 grayscale transition-opacity hover:opacity-100 opacity-60"
+          />
         </a>
         <a href="https://www.linkedin.com/in/aeron-caponpon/" target="_blank">
-          <img src="/assets/linkedin-logo.png" className="size-10 saturate-0" />
+          <img
+            src="/assets/linkedin-logo.png"
+            className="size-10 saturate-0 transition-opacity hover:opacity-100 opacity-60"
+          />
         </a>
       </div>
     </main>
