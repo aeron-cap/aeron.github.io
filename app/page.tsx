@@ -9,7 +9,7 @@ export default function Home() {
       <aside className="basis-64">
         <Navbar />
       </aside>
-      <div>
+      <div className="flex flex-col">
         <Me />
         <Experience />
         <Projects />
