@@ -8,7 +8,8 @@ const projectData = [
 
     type: "Portfolio",
     title: "Aeron Caponpon",
-    link: "",
+    link: "/",
+    target: "_self",
     description: "Created a portfolio to learn Next.js",
     tags: ["Next.js", "Tailwind", "Figma"],
   },
@@ -19,6 +20,7 @@ const projectData = [
     type: "BS Computer Engineering",
     title: "THESIS",
     link: "https://github.com/aeron-cap/farmcup-website",
+    target: "_blank",
     description:
       "Created a website that displays all parameters gathered by the sensors along with an AI feature, specifically fuzzy logic to automatically adjust and control motors, valves, and other components inside the hydroponic system.",
     tags: ["HTML", "CSS", "JavaScript", "PHP", "BootStrap", "MySQL", "Python"],
@@ -30,6 +32,7 @@ const projectData = [
     type: "Software Design Course",
     title: "University Shop",
     link: "https://github.com/aeron-cap/University_Shop",
+    target: "_blank",
     description:
       "Developed a local host uniform and book ordering system for the University. Along with a Log-in system, a full-fledged UI and an Admin page. Mainly assigned as the backend developer.",
     tags: ["Java", "Swing", "MySQL", "Xammp", "Figma"],
@@ -40,18 +43,20 @@ const projectData = [
 
     type: "Deep Learning Course",
     title: "Cataract Detection",
-    link: "",
+    link: "/",
+    target: "_self",
     description:
       "Generated a model of 94.6% confidence level to detect cataract in patients. And manually annotated hundreds of pupils for training.",
     tags: ["Python", "Tensorflow", "Jupyter", "GoogleColab"],
   },
   {
-    id: 3,
+    id: 4,
     date: "2023",
 
     type: "CISCO",
     title: "Network for a 5 storey building inside campus",
-    link: "",
+    link: "/",
+    target: "_self",
     description:
       "Created an addressing table for the whole building complete with IPv4, subnetting, DHCP, VLAN, security, End points, and most of the fundamentals.",
     tags: ["Packet Tracer", "Networking Fundamentals", "Network Security"],
@@ -71,7 +76,7 @@ const ProjectCards = () => {
             <a
               className="after:content-['_↗'] mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50"
               href={x.link}
-              target="_blank"
+              target={x.target}
             >
               {x.title}
             </a>

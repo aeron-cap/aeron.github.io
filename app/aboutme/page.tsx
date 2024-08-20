@@ -2,6 +2,7 @@
 import React from "react";
 import AboutMe from "../components/AboutMe";
 import { TypeAnimation } from "react-type-animation";
+import Resume from "../components/Resume";
 
 const Me = () => {
   return (
@@ -28,9 +29,11 @@ const Me = () => {
         </div>
         <p className="text-center">from Batangas, Philippines.</p>
       </div>
-      <div className="py-4">
-        <AboutMe />
-      </div>
+      <br></br>
+      <AboutMe />
+      <br></br>
+      <Resume />
+      <br></br>
       <div className="flex flex-row items-center gap-6">
         <a href="https://github.com/aeron-cap" target="_blank">
           <img

@@ -31,9 +31,9 @@ const ExperienceCards = () => {
       <div className="pb-8">
         <div className="flex flex-col rounded-lg h-auto bg-white dark:bg-black/40 backdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
           <div className="flex flex-col justify-stretch p-6">
-            <i className="text-m text-neutral-500 dark:text-neutral-300">
+            <p className="text-m text-neutral-500 dark:text-neutral-300">
               {x.position}
-            </i>
+            </p>
             <a className="text-xs w-fit">{x.duration}</a>
             <a
               className="after:content-['_↗'] mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50"
