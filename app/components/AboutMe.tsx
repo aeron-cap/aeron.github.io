@@ -25,7 +25,7 @@ const AboutMe = () => {
         <Button
           onClick={() => setIsOpen(true)}
           id="AboutMe"
-          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           About Me
         </Button>
@@ -48,19 +48,14 @@ const AboutMe = () => {
               <p className="mt-2 text-sm/6 text-white/75">
                 A graduate of Computer Engineering from Batangas State
                 University The National Engineering University - Alangilan last
-                August 2024. Programming and developing solutions to modern
-                problems has always been my passion. With essentially having 0
-                job experience, having a taste of the real-world feeling of IT
-                and Engineering through my recent internship at a tech solutions
-                company, it opened my eyes to a more wider and mature way of
-                handling challenges. <br></br>
+                August 2024.<br></br>
                 <br></br>Recently, I have been starting to re-learn concepts and
                 fundamentals like Java Frameworks, Python libraries, SQL, and
                 Web development (HTML, CSS, JavaScript) frameworks and tech
                 stacks . My main focus as of now is to learn Java Spring, learn
                 implementation of REST APIs to my projects, and generally
                 develop more projects. In the near future, I also want to learn
-                and dive into the world of AI, DevOps, and CyberSecurity.
+                and dive into the world of AI.
                 <br></br>
                 <br></br>When I am not on VS Code, I usually hang out with my
                 gf, play Pokemon, watch Anime, dabbling in digital art, or

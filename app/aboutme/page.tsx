@@ -3,21 +3,19 @@ import AboutMe from "../components/AboutMe";
 
 const Me = () => {
   return (
-    <main className="grid h-screen w-screen justify-items-center">
-      <div className="flex flex-col justify-center pt-16">
-        <p className="text-6xl text-center font-thin pb-6">Hi, I am</p>
-        <p className="text-9xl text-center font-bold drop-shadow-2xl">Aeron</p>
-        <br></br>
+    <main className="grid h-auto w-screen justify-items-center pt-10">
+      <div className="flex flex-col justify-center">
+        <p className="text-6xl text-center font-bold drop-shadow-2xl py-2">
+          Hi, I am Aeron
+        </p>
         <p className="text-center font-inter">
           An aspiring <span className="font-bold">Computer Engineer</span>
         </p>
         <p className="text-center">from Batangas, Philippines.</p>
       </div>
-
-      <div className="self-center">
+      <div className="py-4">
         <AboutMe />
       </div>
-
       <div className="flex flex-row items-center gap-6">
         <a href="https://github.com/aeron-cap" target="_blank">
           <img
