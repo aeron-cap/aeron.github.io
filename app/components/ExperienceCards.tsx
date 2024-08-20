@@ -46,10 +46,10 @@ const ExperienceCards = () => {
               {x.description}
             </p>
             <div>
-              {x.tags.map((key, index) => {
+              {x.tags.map((key) => {
                 return (
                   <span className="w-fit bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                    {x.tags[index]}
+                    {key}
                   </span>
                 );
               })}
