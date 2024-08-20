@@ -1,16 +1,31 @@
+"use client";
 import React from "react";
 import AboutMe from "../components/AboutMe";
+import { TypeAnimation } from "react-type-animation";
 
 const Me = () => {
   return (
     <main className="grid h-auto w-screen justify-items-center pt-10">
       <div className="flex flex-col justify-center">
-        <p className="text-6xl text-center font-bold drop-shadow-2xl py-2">
-          Hi, I am Aeron
-        </p>
-        <p className="text-center font-inter">
-          An aspiring <span className="font-bold">Computer Engineer</span>
-        </p>
+        <div>
+          <TypeAnimation
+            preRenderFirstString={true}
+            sequence={[
+              500,
+              "Hi, I am Aeron Caponpon", // initially rendered starting point
+              1000,
+              "Hi, I am a Computer Engineer",
+              1000,
+              "Hi, I am a Web Developer",
+              1000,
+              "Hi, I am Currently Learning Java Spring",
+              500,
+            ]}
+            speed={25}
+            style={{ fontSize: "3rem", fontWeight: "bold" }}
+            repeat={Infinity}
+          />
+        </div>
         <p className="text-center">from Batangas, Philippines.</p>
       </div>
       <div className="py-4">
