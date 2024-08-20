@@ -28,9 +28,9 @@ const experienceData = [
 const ExperienceCards = () => {
   return experienceData.map((x) => {
     return (
-      <div className="flex flex-row pb-8">
-        <div className="flex flex-col rounded-lg bg-white dark:bg-black/40 backdrop-blur-2xl md:max-w-6xl md:flex-row">
-          <div className="flex flex-col justify-start p-6 w-screen">
+      <div className="pb-8">
+        <div className="flex flex-col rounded-lg h-auto bg-white dark:bg-black/40 backdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
+          <div className="flex flex-col justify-stretch p-6">
             <i className="text-m text-neutral-500 dark:text-neutral-300">
               {x.position}
             </i>

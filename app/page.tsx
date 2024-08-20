@@ -3,6 +3,7 @@ import Me from "./aboutme/page";
 import Experience from "./experience/page";
 import Projects from "./projects/page";
 import Spotlight, { SpotlightCard } from "./components/spotlight";
+import Footer from "./footer/page";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
             <Me />
             <Experience />
             <Projects />
+            <Footer />
           </SpotlightCard>
         </Spotlight>
       </div>
