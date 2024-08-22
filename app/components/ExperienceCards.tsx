@@ -44,7 +44,7 @@ const ExperienceCards = () => {
           <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
             {x.description}
           </p>
-          <div>
+          <div className="flex flex-wrap gap-2">
             {x.tags.map((tag) => (
               <span
                 key={tag} // Use tag as the key, assuming tags are unique

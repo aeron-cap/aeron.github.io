@@ -62,7 +62,7 @@ const ProjectCards = () => {
   return projectData.map((x) => {
     return (
       <div className="pb-2" key={x.id}>
-        <div className="flex flex-col justify-center rounded-lg h-64 w-full transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
+        <div className="flex flex-col justify-center rounded-lg h-72 w-full transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
           <div className="flex flex-col p-6 justify-center h-full">
             <a className="text-m text-neutral-500 dark:text-neutral-300">
               {x.type}
@@ -78,7 +78,7 @@ const ProjectCards = () => {
             <article className="mb-4 text-neutral-600 dark:text-neutral-200">
               {x.description}
             </article>
-            <div className="flex">
+            <div className="flex flex-wrap gap-2">
               {x.tags.map((tag, index) => (
                 <span
                   key={index}

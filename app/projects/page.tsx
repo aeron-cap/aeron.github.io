@@ -8,7 +8,7 @@ const Projects = () => {
       <div className="pt-16 pl-24">
         <p className="text-6xl text-left font-bold">Projects</p>
       </div>
-      <div className="grid grid-cols-2 gap-4 pt-8 pl-24">
+      <div className="grid grid-cols-2 gap-8 pt-8 pl-24">
         <ProjectCards />
       </div>
     </main>

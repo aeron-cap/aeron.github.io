@@ -8,10 +8,6 @@ import Footer from "./footer/page";
 export default function Home() {
   return (
     <div className="select-none flex bg-slate-900">
-      {/* <aside className="basis-64">
-        <Navbar />
-      </aside> */}
-
       <div className="flex flex-col">
         <Spotlight>
           <SpotlightCard>
