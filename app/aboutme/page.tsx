@@ -17,10 +17,8 @@ const Me = () => {
               1000,
               "Hi, I am a Computer Engineer",
               1000,
-              "Hi, I am a Web Developer",
+              "Hi, I am a Software Developer",
               1000,
-              "Hi, I am Currently Learning Java Spring",
-              500,
             ]}
             speed={25}
             style={{ fontSize: "3rem", fontWeight: "bold" }}

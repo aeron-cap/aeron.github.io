@@ -5,7 +5,6 @@ const projectData = [
   {
     id: 0,
     date: "2024",
-
     type: "Portfolio",
     title: "Aeron Caponpon",
     link: "/",
@@ -16,7 +15,6 @@ const projectData = [
   {
     id: 1,
     date: "2024",
-
     type: "BS Computer Engineering",
     title: "THESIS",
     link: "https://github.com/aeron-cap/farmcup-website",
@@ -28,7 +26,6 @@ const projectData = [
   {
     id: 2,
     date: "2023",
-
     type: "Software Design Course",
     title: "University Shop",
     link: "https://github.com/aeron-cap/University_Shop",
@@ -40,7 +37,6 @@ const projectData = [
   {
     id: 3,
     date: "2023",
-
     type: "Deep Learning Course",
     title: "Cataract Detection",
     link: "/",
@@ -52,7 +48,6 @@ const projectData = [
   {
     id: 4,
     date: "2023",
-
     type: "CISCO",
     title: "Network for a 5 storey building inside campus",
     link: "/",
@@ -66,9 +61,9 @@ const projectData = [
 const ProjectCards = () => {
   return projectData.map((x) => {
     return (
-      <div className="pb-2">
-        <div className="flex flex-col rounded-lg h-64 w-full transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
-          <div className="flex flex-col p-6 justify-stretch">
+      <div className="pb-2" key={x.id}>
+        <div className="flex flex-col justify-center rounded-lg h-64 w-full transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
+          <div className="flex flex-col p-6 justify-center h-full">
             <a className="text-m text-neutral-500 dark:text-neutral-300">
               {x.type}
             </a>
@@ -80,17 +75,18 @@ const ProjectCards = () => {
             >
               {x.title}
             </a>
-            <article className=" mb-4 text-neutral-600 dark:text-neutral-200">
+            <article className="mb-4 text-neutral-600 dark:text-neutral-200">
               {x.description}
             </article>
-            <div className="flex ">
-              {x.tags.map((key, index) => {
-                return (
-                  <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                    {key}
-                  </span>
-                );
-              })}
+            <div className="flex">
+              {x.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 rounded dark:bg-blue-900 dark:text-blue-300"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
