@@ -69,7 +69,7 @@ const ProjectCards = () => {
           <a className="text-xs text-neutral-50">{x.type}</a>
           <a className="text-xs">{x.date}</a>
           <a
-            className="text-lg sm:text-xl font-medium mb-2 text-cyan-100"
+            className="after:content-['_↗'] text-lg sm:text-xl font-medium mb-2 text-cyan-100"
             href={x.link}
             target={x.target}
           >

@@ -6,7 +6,7 @@ import Resume from "../components/Resume";
 
 const Me = () => {
   return (
-    <main className="grid w-screen pt-10 justify-items-center">
+    <main className="grid w-screen pt-10 justify-items-center h-screen">
       <div className="flex flex-col items-center justify-center space-y-4">
         <div className="h-24 md:h-16 flex items-center justify-center overflow-hidden">
           <div className="text-center text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -28,8 +28,10 @@ const Me = () => {
         </div>
         <p className="text-center">from Batangas, Philippines.</p>
       </div>
-      <AboutMe />
-      <Resume />
+      <div className="grid justify-items-center">
+        <AboutMe />
+        <Resume />
+      </div>
       <div className="flex flex-row items-center gap-6 mt-6">
         <a
           href="https://github.com/aeron-cap"

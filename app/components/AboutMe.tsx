@@ -21,7 +21,7 @@ const AboutMe = () => {
 
   return (
     <main>
-      <div className="pt-10 pb-4">
+      <div className="pt-20">
         <Button
           onClick={() => setIsOpen(true)}
           id="AboutMe"

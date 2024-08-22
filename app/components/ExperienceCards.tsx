@@ -37,7 +37,7 @@ const ExperienceCards = () => {
                 <a className="text-xs md:text-sm text-slate-50">{x.duration}</a>
               </div>
               <a
-                className="after:content-['_↗'] mb-2 text-lg md:text-xl font-medium text-blue-200"
+                className="after:content-['_↗'] mb-2 text-lg md:text-xl font-medium text-cyan-100"
                 href={x.link}
                 target="_blank"
               >
