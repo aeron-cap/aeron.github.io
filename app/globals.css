@@ -43,3 +43,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@layer base {
+  html {
+    color-scheme: light !important;
+  }
+}
