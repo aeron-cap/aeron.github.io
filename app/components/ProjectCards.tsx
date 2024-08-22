@@ -59,40 +59,41 @@ const projectData = [
 ];
 
 const ProjectCards = () => {
-  return projectData.map((x) => {
-    return (
-      <div className="pb-2" key={x.id}>
-        <div className="flex flex-col justify-center rounded-lg h-72 w-full transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
-          <div className="flex flex-col p-6 justify-center h-full">
-            <a className="text-m text-neutral-500 dark:text-neutral-300">
-              {x.type}
-            </a>
-            <a className="text-xs">{x.date}</a>
-            <a
-              className="after:content-['_↗'] mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50"
-              href={x.link}
-              target={x.target}
-            >
-              {x.title}
-            </a>
-            <article className="mb-4 text-neutral-600 dark:text-neutral-200">
-              {x.description}
-            </article>
-            <div className="flex flex-wrap gap-2">
-              {x.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 rounded dark:bg-blue-900 dark:text-blue-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+  return (
+    <>
+      {projectData.map((x) => (
+        <div
+          className="flex flex-col bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-transform duration-300 rounded-lg p-4 sm:p-6 text-neutral-800 dark:text-neutral-50"
+          key={x.id}
+        >
+          <a className="text-xs text-neutral-500 dark:text-neutral-300">
+            {x.type}
+          </a>
+          <a className="text-xs">{x.date}</a>
+          <a
+            className="text-lg sm:text-xl font-medium mb-2"
+            href={x.link}
+            target={x.target}
+          >
+            {x.title}
+          </a>
+          <article className="mb-4 text-neutral-600 dark:text-neutral-200 text-sm sm:text-base">
+            {x.description}
+          </article>
+          <div className="flex flex-wrap gap-2">
+            {x.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
-      </div>
-    );
-  });
+      ))}
+    </>
+  );
 };
 
 export default ProjectCards;

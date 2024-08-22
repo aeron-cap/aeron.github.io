@@ -27,7 +27,7 @@ const experienceData = [
 
 const ExperienceCards = () => {
   return (
-    <div className="max-w-screen-lg mx-auto px-4">
+    <div className="max-w-screen-lg mx-auto">
       {experienceData.map((x) => (
         <div className="pb-8" key={x.id}>
           <div className="flex flex-col rounded-lg h-auto bg-white dark:bg-black/40 backdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
