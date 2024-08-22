@@ -30,27 +30,27 @@ const ExperienceCards = () => {
     <div className="max-w-screen-lg mx-auto">
       {experienceData.map((x) => (
         <div className="pb-8" key={x.id}>
-          <div className="flex flex-col rounded-lg h-auto bg-white dark:bg-black/40 backdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
+          <div className="flex flex-col rounded-lg h-auto bg-whitebackdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
             <div className="flex flex-col justify-stretch p-6 md:p-8">
-              <p className="text-sm md:text-md text-neutral-500 dark:text-neutral-300">
-                {x.position}
-              </p>
-              <a className="text-xs md:text-sm w-fit">{x.duration}</a>
+              <div className="flex justify-between items-center">
+                <p className="text-sm md:text-md text-slate-50">{x.position}</p>
+                <a className="text-xs md:text-sm text-slate-50">{x.duration}</a>
+              </div>
               <a
-                className="after:content-['_↗'] mb-2 text-lg md:text-xl font-medium text-neutral-800 dark:text-neutral-50"
+                className="after:content-['_↗'] mb-2 text-lg md:text-xl font-medium text-blue-200"
                 href={x.link}
                 target="_blank"
               >
                 {x.company}
               </a>
-              <p className="mb-4 text-sm md:text-base text-neutral-600 dark:text-neutral-200">
+              <p className="mb-4 text-sm md:text-base text-slate-50">
                 {x.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {x.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="w-fit bg-blue-100 text-blue-800 text-xs md:text-sm font-medium px-2.5 rounded dark:bg-blue-900 dark:text-blue-300"
+                    className="w-fit bg-blue-900 text-blue-200 text-xs md:text-sm font-medium px-2.5 rounded"
                   >
                     {tag}
                   </span>

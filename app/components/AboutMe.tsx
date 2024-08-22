@@ -25,7 +25,7 @@ const AboutMe = () => {
         <Button
           onClick={() => setIsOpen(true)}
           id="AboutMe"
-          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 text-center"
         >
           About Me
         </Button>

@@ -33,7 +33,9 @@ const config: Config = {
     // animation: {
     //   "refine-slide": "refine 5s ",
     // },
+    darkMode: "false",
   },
+
   plugins: [],
 };
 export default config;
