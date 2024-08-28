@@ -7,7 +7,7 @@ import Footer from "./footer/page";
 
 export default function Home() {
   return (
-    <div className="select-none flex bg-slate-900">
+    <div className="select-none flex">
       <div className="flex flex-col">
         <Spotlight>
           <SpotlightCard>

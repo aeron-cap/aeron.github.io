@@ -6,7 +6,7 @@ import Resume from "../components/Resume";
 
 const Me = () => {
   return (
-    <main className="grid w-screen pt-8 justify-items-center h-screen">
+    <div className="grid w-screen pt-8 justify-items-center h-screen">
       <div className="flex flex-col items-center justify-center space-y-4">
         <div className="h-24 md:h-16 flex items-center justify-center overflow-hidden">
           <div className="text-center text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -67,7 +67,7 @@ const Me = () => {
           />
         </a>
       </div>
-    </main>
+    </div>
   );
 };
 
