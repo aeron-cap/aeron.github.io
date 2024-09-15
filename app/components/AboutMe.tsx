@@ -55,11 +55,10 @@ const AboutMe = () => {
                 stacks . My main focus as of now is to learn Java Spring, learn
                 implementation of REST APIs to my projects, and generally
                 develop more projects. In the near future, I also want to learn
-                and dive into the world of AI.
+                and dive into AI.
                 <br></br>
                 <br></br>When I am not on VS Code, I usually hang out with my
-                gf, play Pokemon, watch Anime, dabbling in digital art, or
-                working out.
+                gf, play Pokemon, watch Anime,or working out.
               </p>
             </DialogPanel>
           </div>

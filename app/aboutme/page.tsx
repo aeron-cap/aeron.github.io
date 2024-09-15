@@ -18,6 +18,8 @@ const Me = () => {
                 1000,
                 "Hi, I am a Computer Engineer",
                 1000,
+                "Hi, I am a Web Developer",
+                1000,
                 "Hi, I am a Software Developer",
                 1000,
               ]}

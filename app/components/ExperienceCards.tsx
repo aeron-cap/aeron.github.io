@@ -3,6 +3,27 @@ import React from "react";
 
 const experienceData = [
   {
+    id: 0,
+    position: "Web Developer",
+    duration: "September 2024 - Present",
+    company: "Accur8 Enterprise Solutions Inc.",
+    link: "https://www.aesiph.com/",
+    description: "Creating and Maintaning Web Apps for the company's clients.",
+    tags: [
+      "Laravel",
+      "Angular",
+      "MySQL",
+      "SQL",
+      "PHP",
+      "JavaScript",
+      "Git",
+      "BitBucket",
+      "DBeaver",
+      "WAMP",
+      "Asana",
+    ],
+  },
+  {
     id: 1,
     position: "Web Developer Intern",
     duration: "February 2024 - May 2024",
