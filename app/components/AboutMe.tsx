@@ -58,7 +58,7 @@ const AboutMe = () => {
                 and dive into AI.
                 <br></br>
                 <br></br>When I am not on VS Code, I usually hang out with my
-                gf, play Pokemon, watch Anime,or working out.
+                gf, play Pokemon, watch Anime, or working out.
               </p>
             </DialogPanel>
           </div>
