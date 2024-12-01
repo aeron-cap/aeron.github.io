@@ -1,39 +1,37 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
-  return (
-    <div className="grid">
-      <div className="bg-gradient-to-r backdrop-blur-3xl grid fixed gap-14 w-fit h-screen content-center pl-16 pr-11">
-        <div className="flex flex-row gap-3">
-          <Link className="pointer-events-auto" href={"#aboutme"}>
-            About
-          </Link>
-        </div>
-        <div className="flex flex-row gap-3">
-          <Link className="pointer-events-auto" href={"#experience"}>
-            Experience
-          </Link>
-        </div>
-        <div className="flex flex-row gap-3">
-          <Link className="pointer-events-auto" href={"#projects"}>
-            Projects
-          </Link>
-        </div>
-        <div className="flex flex-row gap-3">
-          <Link className="pointer-events-auto" href={"#skills"}>
-            Skills
-          </Link>
-        </div>
-        <div className="flex flex-row gap-3">
-          <Link className="pointer-events-auto" href={"#resume"}>
-            Resume
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  const [stickyClass, setStickyClass] = useState("relative");
+
+  useEffect(() => {
+    const experienceSection = document.getElementById("experience");
+
+    const stickNavbar = () => {
+      if (experienceSection) {
+        const rect = experienceSection.getBoundingClientRect();
+        const windowHeight = window.scrollY;
+
+        // Check if the experience section is in the viewport
+        if (rect.top <= 0 && windowHeight > 500) {
+          setStickyClass("fixed top-0 left-0 z-50");
+        } else {
+          setStickyClass("relative");
+        }
+      }
+    };
+
+    // Only add the scroll listener if the experience section exists
+    if (experienceSection) {
+      window.addEventListener("scroll", stickNavbar);
+    }
+
+    return () => {
+      // Remove the scroll listener when the component unmounts
+      window.removeEventListener("scroll", stickNavbar);
+    };
+  }, []);
+  return <div className={`h-16 w-full bg-gray-200 ${stickyClass}`}>Navbar</div>;
 };
 
 export default Navbar;

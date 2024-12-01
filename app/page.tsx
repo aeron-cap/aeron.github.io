@@ -11,6 +11,7 @@ export default function Home() {
       <div className="flex flex-col">
         <Spotlight>
           <SpotlightCard>
+            {/* <Navbar /> */}
             <Me />
             <Experience />
             <Projects />

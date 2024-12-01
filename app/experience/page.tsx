@@ -5,7 +5,7 @@ import ExperienceCards from "../components/ExperienceCards";
 const Experience = () => {
   return (
     <main
-      id="projects"
+      id="experience"
       className="flex flex-col justify-start items-center h-fit w-screen"
     >
       <div className="w-full max-w-screen-lg text-center px-6 sm:text-left lg:px-0">
