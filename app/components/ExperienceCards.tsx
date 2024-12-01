@@ -16,6 +16,8 @@ const experienceData = [
       "SQL",
       "PHP",
       "JavaScript",
+      "Node.js",
+      "AWS",
       "Git",
       "BitBucket",
       "DBeaver",
