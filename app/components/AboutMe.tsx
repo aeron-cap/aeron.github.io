@@ -1,12 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Button,
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
+import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
 const AboutMe = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,13 +43,10 @@ const AboutMe = () => {
                 A graduate of Computer Engineering from Batangas State
                 University The National Engineering University - Alangilan last
                 August 2024.<br></br>
-                <br></br>Recently, I have been starting to re-learn concepts and
-                fundamentals like Java Frameworks, Python libraries, SQL, and
-                Web development (HTML, CSS, JavaScript) frameworks and tech
-                stacks . My main focus as of now is to learn Java Spring, learn
-                implementation of REST APIs to my projects, and generally
-                develop more projects. In the near future, I also want to learn
-                and dive into AI.
+                <br></br>Recently, I have been mainly focusing on my work @ AESi
+                as a FullStack Web Developer, and plan to expand my horizons in
+                the field of software development, specifically Backend
+                Development and in the future, DevOps and the Cloud.
                 <br></br>
                 <br></br>When I am not on VS Code, I usually hang out with my
                 gf, play Pokemon, watch Anime, or working out.
