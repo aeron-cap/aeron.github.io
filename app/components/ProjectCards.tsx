@@ -59,38 +59,146 @@ const projectData = [
 ];
 
 const ProjectCards = () => {
+  const projectData = [
+    {
+      id: 0,
+      date: "2024",
+      type: "Portfolio",
+      title: "Aeron Caponpon",
+      link: "/",
+      target: "_self",
+      description: "Created a portfolio to learn Next.js",
+      tags: ["Next.js", "Tailwind", "Figma"],
+    },
+    {
+      id: 1,
+      date: "2024",
+      type: "BS Computer Engineering",
+      title: "THESIS",
+      link: "https://github.com/aeron-cap/farmcup-website",
+      target: "_blank",
+      description: "Created a website that displays all parameters gathered by the sensors along with an AI feature, specifically fuzzy logic to automatically adjust and control motors, valves, and other components inside the hydroponic system.",
+      tags: ["HTML", "CSS", "JavaScript", "PHP", "BootStrap", "MySQL", "Python"],
+    },
+    {
+      id: 2,
+      date: "2023",
+      type: "Software Design Course",
+      title: "University Shop",
+      link: "https://github.com/aeron-cap/University_Shop",
+      target: "_blank",
+      description: "Developed a local host uniform and book ordering system for the University. Along with a Log-in system, a full-fledged UI and an Admin page. Mainly assigned as the backend developer.",
+      tags: ["Java", "Swing", "MySQL", "Xammp", "Figma"],
+    },
+    {
+      id: 3,
+      date: "2023",
+      type: "Deep Learning Course",
+      title: "Cataract Detection",
+      link: "/",
+      target: "_self",
+      description: "Generated a model of 94.6% confidence level to detect cataract in patients. And manually annotated hundreds of pupils for training.",
+      tags: ["Python", "Tensorflow", "Jupyter", "GoogleColab"],
+    },
+    {
+      id: 4,
+      date: "2023",
+      type: "CISCO",
+      title: "Network for a 5 storey building inside campus",
+      link: "/",
+      target: "_self",
+      description: "Created an addressing table for the whole building complete with IPv4, subnetting, DHCP, VLAN, security, End points, and most of the fundamentals.",
+      tags: ["Packet Tracer", "Networking Fundamentals", "Network Security"],
+    },
+  ];
+
+  const getTagColor = (tag) => {
+      const colorMap = {
+        "Laravel": "text-red-400",
+        "PHP": "text-purple-400",
+        "Node.js": "text-green-400",
+        "Node": "text-green-400",
+        "Express": "text-yellow-400",
+        "MongoDB": "text-green-500",
+        "MySQL": "text-blue-400",
+        "SQL": "text-blue-400",
+        "Python": "text-yellow-500",
+        "Java": "text-orange-500",
+
+        "Angular": "text-red-500",
+        "React": "text-cyan-400",
+        "JavaScript": "text-yellow-300",
+        "Tailwind": "text-cyan-500",
+        "HTML": "text-orange-500",
+        "CSS": "text-blue-500",
+        "BootStrap": "text-purple-800",
+        
+        "AWS": "text-orange-400",
+        "Docker": "text-blue-500",
+
+        "Git": "text-orange-500",
+        "GitHub": "text-white",
+        "BitBucket": "text-blue-600",
+
+        "Postman": "text-orange-400",
+        "DBeaver": "text-blue-300",
+        "WAMP": "text-purple-500",
+        "Xammp": "text-orange-500",
+        "Asana": "text-orange-400",
+        "Cypress": "text-green-500",
+        "Figma": "text-purple-400",
+
+        "Next.js": "text-gray-500",
+      };
+    
+    return colorMap[tag] || "text-green-300";
+  };
+
   return (
-    <>
-      {projectData.map((x) => (
-        <div
-          className="flex flex-col bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-transform duration-300 rounded-lg p-4 sm:p-6"
-          key={x.id}
-        >
-          <a className="text-xs text-neutral-50">{x.type}</a>
-          <a className="text-xs">{x.date}</a>
-          <a
-            className="after:content-['_↗'] text-lg sm:text-xl font-medium mb-2 text-cyan-100"
-            href={x.link}
-            target={x.target}
-          >
-            {x.title}
-          </a>
-          <article className="mb-4 text-sm sm:text-base">
-            {x.description}
-          </article>
-          <div className="flex flex-wrap gap-2">
-            {x.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="bg-blue-900 text-blue-200 text-xs sm:text-sm font-medium px-2 py-1 rounded"
-              >
-                {tag}
-              </span>
-            ))}
+    <div className="space-y-6 text-sm md:text-base font-mono text-green-400">
+      <p className="text-green-500">$ find ./projects -type f -name "*.project"</p>
+      <div className="space-y-8">
+        {projectData.map((project) => (
+          <div key={project.id} className="pl-4 border-l border-green-400 space-y-2">
+            <p className="text-green-500">$ cat {project.title.toLowerCase().replace(/\s+/g, '_')}.project</p>
+            <div className="pl-4 space-y-1">
+              <p>
+                <span className="text-green-300">name:</span> "{project.title}"
+              </p>
+              <p>
+                <span className="text-green-300">year:</span> {project.date}
+              </p>
+              <p>
+                <span className="text-green-300">type:</span> "{project.type}"
+              </p>
+              <p>
+                <span className="text-green-300">description:</span> "{project.description}"
+              </p>
+              <p>
+                <span className="text-green-300">technologies:</span> [{project.tags.map((tag, i) => (
+                  <span key={tag} className={getTagColor(tag)}>
+                    "{tag}"{i < project.tags.length - 1 ? ", " : ""}
+                  </span>
+                ))}]
+              </p>
+              <p>
+                <span className="text-green-300">link:</span>{" "}
+                <a
+                  href={project.link}
+                  target={project.target}
+                  className="underline text-green-400 hover:text-white"
+                >
+                  {project.link}
+                </a>
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-    </>
+        ))}
+      </div>
+      <p className="inline-block">
+        $ <span className="animate-pulse">_</span>
+      </p>
+    </div>
   );
 };
 

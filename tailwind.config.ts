@@ -13,7 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-    },
+      animation: {
+        pulse: 'pulse 1s infinite steps(1)',
+      },
+        fontFamily: {
+          mono: ['Courier New', 'monospace'],
+        },
+      },
     // cursor: {
     //   fancy: "url(hand.cur), pointer",
     // },

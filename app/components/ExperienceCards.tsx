@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import React from "react";
 
 const experienceData = [
@@ -8,7 +8,8 @@ const experienceData = [
     duration: "September 2024 - Present",
     company: "Accur8 Enterprise Solutions Inc.",
     link: "https://www.aesiph.com/",
-    description: "Creating and Maintaning Web Apps for the company's clients.",
+    description:
+      "Creating and Maintaining Web Apps for the company's clients.",
     tags: [
       "Laravel",
       "Angular",
@@ -32,7 +33,7 @@ const experienceData = [
     company: "Accur8 Enterprise Solutions Inc.",
     link: "https://www.aesiph.com/",
     description:
-      "Developed a Billing Generation web application that the company will use to send billing information to its clients. Specifically assigned as one of the back-end developers to the project by using JavaScript, Postman, Docker, and MongoDB to verify API functionality, while following the Clean Architecture technique. Worked on creating the documentation for the Back-end, and for the Front-end to use as a reference.",
+      "Developed a Billing Generation web app to send billing info to clients. Assigned to backend using JavaScript, Postman, Docker, MongoDB, and Clean Architecture. Also wrote backend and frontend documentation.",
     tags: [
       "MongoDB",
       "Express",
@@ -49,39 +50,104 @@ const experienceData = [
 ];
 
 const ExperienceCards = () => {
+  const experienceData = [
+    {
+      id: 0,
+      position: "Web Developer",
+      duration: "September 2024 - Present",
+      company: "Accur8 Enterprise Solutions Inc.",
+      link: "https://www.aesiph.com/",
+      description: "Creating and Maintaining Web Apps for the company's clients.",
+      tags: ["Laravel", "Angular", "MySQL", "SQL", "PHP", "JavaScript", "Node.js", "AWS", "Git", "BitBucket", "DBeaver", "WAMP", "Asana"],
+    },
+    {
+      id: 1,
+      position: "Web Developer Intern",
+      duration: "February 2024 - May 2024",
+      company: "Accur8 Enterprise Solutions Inc.",
+      link: "https://www.aesiph.com/",
+      description: "Developed a Billing Generation web app to send billing info to clients. Assigned to backend using JavaScript, Postman, Docker, MongoDB, and Clean Architecture. Also wrote backend and frontend documentation.",
+      tags: ["MongoDB", "Express", "React", "Node", "Git", "GitHub", "Postman", "Docker", "Cypress", "Figma"],
+    },
+  ];
+
+    const getTagColor = (tag) => {
+      const colorMap = {
+        "Laravel": "text-red-400",
+        "PHP": "text-purple-400",
+        "Node.js": "text-green-400",
+        "Node": "text-green-400",
+        "Express": "text-yellow-400",
+        "MongoDB": "text-green-500",
+        "MySQL": "text-blue-400",
+        "SQL": "text-blue-400",
+
+        "Angular": "text-red-500",
+        "React": "text-cyan-400",
+        "JavaScript": "text-yellow-300",
+        
+        "AWS": "text-orange-400",
+        "Docker": "text-blue-500",
+
+        "Git": "text-orange-500",
+        "GitHub": "text-white",
+        "BitBucket": "text-blue-600",
+
+        "Postman": "text-orange-400",
+        "DBeaver": "text-blue-300",
+        "WAMP": "text-purple-500",
+        "Asana": "text-orange-400",
+        "Cypress": "text-green-500",
+        "Figma": "text-purple-400",
+      };
+    
+    return colorMap[tag] || "text-green-300";
+  };
+
   return (
-    <div className="max-w-screen-lg mx-auto">
-      {experienceData.map((x) => (
-        <div className="pb-8" key={x.id}>
-          <div className="flex flex-col rounded-lg h-auto bg-whitebackdrop-blur-2xl transition ease-in-out delay-150 bg-black/40 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl duration-200">
-            <div className="flex flex-col justify-stretch p-6 md:p-8">
-              <div className="flex justify-between items-center">
-                <p className="text-sm md:text-md text-slate-50">{x.position}</p>
-                <a className="text-xs md:text-sm text-slate-50">{x.duration}</a>
-              </div>
-              <a
-                className="after:content-['_↗'] mb-2 text-lg md:text-xl font-medium text-cyan-100"
-                target="_blank"
-              >
-                {x.company}
-              </a>
-              <p className="mb-4 text-sm md:text-base text-slate-50">
-                {x.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {x.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="w-fit bg-blue-900 text-blue-200 text-xs md:text-sm font-medium px-2.5 rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+    <div className="space-y-6 text-sm md:text-base font-mono text-green-400">
+      <p className="text-green-500">$ cat experience.json</p>
+      <pre className="whitespace-pre-wrap">{`[\n`}</pre>
+      {experienceData.map((x, index) => (
+        <div key={x.id} className="pl-4 border-l border-green-400 space-y-2">
+          <p>{`  {`}</p>
+          <p>
+            &nbsp;&nbsp;"position": <span className="text-green-300">"{x.position}",</span>
+          </p>
+          <p>
+            &nbsp;&nbsp;"company":{" "}
+            <a
+              href={x.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-green-400 hover:text-white"
+            >
+              "{x.company}"
+            </a>
+            ,
+          </p>
+          <p>
+            &nbsp;&nbsp;"duration": <span className="text-green-300">"{x.duration}",</span>
+          </p>
+          <p>
+            &nbsp;&nbsp;"description": <span className="text-green-300">"{x.description}",</span>
+          </p>
+          <p>&nbsp;&nbsp;"technologies": [</p>
+          <ul className="list-none pl-8">
+            {x.tags.map((tag, i) => (
+              <li key={tag} className={getTagColor(tag)}>
+                &nbsp;&nbsp;&nbsp;&nbsp;"{tag}"{i < x.tags.length - 1 ? "," : ""}
+              </li>
+            ))}
+          </ul>
+          <p>&nbsp;&nbsp;]</p>
+          <p>{`  }${index < experienceData.length - 1 ? "," : ""}`}</p>
         </div>
       ))}
+      <pre className="whitespace-pre-wrap">{`]`}</pre>
+      <p className="inline-block">
+        $ <span className="animate-pulse">_</span>
+      </p>
     </div>
   );
 };

@@ -1,61 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import React from "react";
 
 const AboutMe = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function open() {
-    setIsOpen(true);
-  }
-
-  function close() {
-    setIsOpen(false);
-  }
-
   return (
-    <main>
-      <div className="pt-20">
-        <Button
-          onClick={() => setIsOpen(true)}
-          id="AboutMe"
-          className="block text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 text-center"
-        >
-          About Me
-        </Button>
-      </div>
-      <Dialog
-        open={isOpen}
-        as="div"
-        className="relative z-10 focus:outline-none"
-        onClose={close}
-      >
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <DialogPanel
-              transition
-              className="w-full max-w-md rounded-xl bg-black/40 p-6 backdrop-blur-3xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
-            >
-              <DialogTitle as="h3" className="text-base/7 text-white font-bold">
-                About Me
-              </DialogTitle>
-              <p className="mt-2 text-sm/6 text-white/75">
-                A graduate of Computer Engineering from Batangas State
-                University The National Engineering University - Alangilan last
-                August 2024.<br></br>
-                <br></br>Recently, I have been mainly focusing on my work @ AESi
-                as a FullStack Web Developer, and plan to expand my horizons in
-                the field of software development, specifically Backend
-                Development and in the future, DevOps and the Cloud.
-                <br></br>
-                <br></br>When I am not on VS Code, I usually hang out with my
-                gf, play Pokemon, watch Anime, or working out.
-              </p>
-            </DialogPanel>
-          </div>
-        </div>
-      </Dialog>
-    </main>
+    <div className="pl-4 border-l border-green-400 space-y-2 text-sm md:text-base">
+      <p>
+        A graduate of <a className="text-red-500">Computer Engineering</a> from Batangas State University – The National Engineering University, Alangilan Campus, last August 2024.
+      </p>
+      <p>
+        Recently, I've been mainly focused on my work @ AESi as a Fullstack Web Developer. Currently learning <a className="text-blue-400">C++</a> on the side and doing my side-project (which will be included here soon).
+      </p>
+      <p>
+        When I'm not on my <a className="text-blue-400">Laptop</a>, I'm probably hanging out with my <a className="text-pink-400">girlfriend</a>, playing <a className="text-red-400">Pokémon</a>, watching anime, or working out.
+      </p>
+    </div>
   );
 };
 

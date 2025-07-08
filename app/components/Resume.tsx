@@ -4,17 +4,19 @@ const Resume = () => {
   const downloadFile = () => {
     window.location.href = "/assets/CAPONPON_AERON-RESUME.pdf";
   };
+
   return (
-    <div>
+    <div className="pl-4 border-l border-green-400 space-y-1 text-sm md:text-base">
+      <p className="text-green-500">$ download resume.pdf</p>
       <button
         onClick={downloadFile}
-        id="Resume"
-        className=" after:content-['_↗'] block text-white hover:bg-blue-800 font-medium rounded-lg text-xs px-2 py-1 text-center "
+        className="underline text-green-400 hover:text-white transition"
       >
-        Download Resume
+        → Click here to download resume
       </button>
     </div>
   );
 };
 
 export default Resume;
+

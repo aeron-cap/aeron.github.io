@@ -1,73 +1,115 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AboutMe from "../components/AboutMe";
-import { TypeAnimation } from "react-type-animation";
 import Resume from "../components/Resume";
+import Image from "next/image";
 
 const Me = () => {
   return (
-    <div className="grid w-screen pt-8 justify-items-center h-screen">
-      <div className="flex flex-col items-center justify-center space-y-4">
-        <div className="h-24 md:h-16 flex items-center justify-center overflow-hidden">
-          <div className="text-center text-3xl md:text-4xl lg:text-5xl font-bold">
-            <TypeAnimation
-              preRenderFirstString={true}
-              sequence={[
-                500,
-                "Hi, I am Aeron Caponpon",
-                1000,
-                "Hi, I am a Computer Engineer",
-                1000,
-                "Hi, I am a Web Developer",
-                1000,
-                "Hi, I am a Software Developer",
-                1000,
-              ]}
-              speed={25}
-              repeat={Infinity}
-            />
+    <div className="w-full min-h-screen bg-black text-green-400 font-mono px-4 py-6 md:py-10">
+      <div className="max-w-4xl mx-auto mb-6">
+        <div className="bg-gray-800 rounded-t-lg p-2 flex items-center space-x-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <span className="text-gray-300 text-sm ml-4">aeron@portfolio:~</span>
+        </div>
+        <div className="bg-black border-2 border-gray-800 rounded-b-lg p-4 md:p-6">
+          <div className="space-y-4 md:space-y-6">
+            <div>
+              <p className="text-green-500">$ whoami</p>
+              <p><a className="text-blue-500">Aeron Caponpon</a></p>
+            </div>
+
+            <div className="">
+              <Image
+                src="/assets/memoji.png"
+                alt="Aeron Caponpon"
+                width={100}
+                height={100}
+                className="rounded-lg object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-green-500">$ cat profession.txt</p>
+              <p><a className="text-blue-500">Web & Software Developer</a> | <a className="text-red-500">Computer Engineering</a> Graduate</p>
+            </div>
+
+            <div>
+              <p className="text-green-500">$ pwd</p>
+              <p>/home/aeron/portfolio</p>
+            </div>
+
+            <div>
+              <p className="text-green-500">$ location</p>
+              <p>Batangas, Philippines</p>
+            </div>
+
+            <div>
+              <p className="text-green-500">$ ./about-me --verbose</p>
+              <div className="pl-4 border-l border-green-400 mt-2">
+                <AboutMe />
+              </div>
+            </div>
+
+            <div>
+              <p className="text-green-500">$ ./resume --download</p>
+              <div className="pl-4 border-l border-green-400 mt-2">
+                <Resume />
+              </div>
+            </div>
+
+            <div>
+              <p className="text-green-500">$ ls -la contacts/</p>
+              <div className="pl-4 space-y-1 mt-2">
+                <a
+                  href="https://github.com/aeron-cap"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-green-400 hover:text-white underline text-white"
+                >
+                  → github.com/aeron-cap
+                </a>
+                <a
+                  href="mailto:aeroncaponpon.01@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-green-400 hover:text-white underline text-red-500"
+                >
+                  → aeroncaponpon.01@gmail.com
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/aeron-caponpon/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-green-400 hover:text-white underline text-blue-500"
+                >
+                  → linkedin.com/in/aeron-caponpon
+                </a>
+              </div>
+            </div>
+
+            <div className="space-y-1 text-sm">
+              <p className="text-green-500">$ help</p>
+              <p className="pl-4">Available commands:</p>
+              <div className="pl-4 space-y-1">
+                <a href="#experience" className="block hover:text-white">
+                  cd experience/     # View work experience
+                </a>
+                <a href="#projects" className="block hover:text-white">
+                  cd projects/       # Browse project portfolio
+                </a>
+                <p>exit               # Thanks for visiting!</p>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <span className="text-green-500">$ </span>
+              <span className="animate-pulse ml-1">█</span>
+            </div>
           </div>
         </div>
-        <p className="text-center">from Batangas, Philippines.</p>
-      </div>
-      <div className="grid justify-items-center">
-        <AboutMe />
-        <Resume />
-      </div>
-      <div className="flex flex-row items-center gap-6 mt-6">
-        <a
-          href="https://github.com/aeron-cap"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/github-logo.png"
-            className="size-10 grayscale invert transition-opacity hover:opacity-100 opacity-60"
-            alt="GitHub"
-          />
-        </a>
-        <a
-          href="mailto:aeroncaponpon.01@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/gmail-logo.png"
-            className="size-10 grayscale transition-opacity hover:opacity-100 opacity-60"
-            alt="Gmail"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/aeron-caponpon/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/linkedin-logo.png"
-            className="size-10 saturate-0 transition-opacity hover:opacity-100 opacity-60"
-            alt="LinkedIn"
-          />
-        </a>
       </div>
     </div>
   );
