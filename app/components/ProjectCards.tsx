@@ -112,45 +112,40 @@ const ProjectCards = () => {
     },
   ];
 
-  const getTagColor = (tag) => {
-      const colorMap = {
-        "Laravel": "text-red-400",
-        "PHP": "text-purple-400",
-        "Node.js": "text-green-400",
-        "Node": "text-green-400",
-        "Express": "text-yellow-400",
-        "MongoDB": "text-green-500",
-        "MySQL": "text-blue-400",
-        "SQL": "text-blue-400",
-        "Python": "text-yellow-500",
-        "Java": "text-orange-500",
+  const getTagColor = (tag: string): string => {
+    const colorMap: Record<string, string> = {
+      Laravel: "text-red-400",
+      PHP: "text-purple-400",
+      "Node.js": "text-green-400",
+      Node: "text-green-400",
+      Express: "text-yellow-400",
+      MongoDB: "text-green-500",
+      MySQL: "text-blue-400",
+      SQL: "text-blue-400",
+      Python: "text-yellow-500",
+      Java: "text-orange-500",
+      Angular: "text-red-500",
+      React: "text-cyan-400",
+      JavaScript: "text-yellow-300",
+      Tailwind: "text-cyan-500",
+      HTML: "text-orange-500",
+      CSS: "text-blue-500",
+      BootStrap: "text-purple-800",
+      AWS: "text-orange-400",
+      Docker: "text-blue-500",
+      Git: "text-orange-500",
+      GitHub: "text-white",
+      BitBucket: "text-blue-600",
+      Postman: "text-orange-400",
+      DBeaver: "text-blue-300",
+      WAMP: "text-purple-500",
+      Xammp: "text-orange-500",
+      Asana: "text-orange-400",
+      Cypress: "text-green-500",
+      Figma: "text-purple-400",
+      "Next.js": "text-gray-500",
+    };
 
-        "Angular": "text-red-500",
-        "React": "text-cyan-400",
-        "JavaScript": "text-yellow-300",
-        "Tailwind": "text-cyan-500",
-        "HTML": "text-orange-500",
-        "CSS": "text-blue-500",
-        "BootStrap": "text-purple-800",
-        
-        "AWS": "text-orange-400",
-        "Docker": "text-blue-500",
-
-        "Git": "text-orange-500",
-        "GitHub": "text-white",
-        "BitBucket": "text-blue-600",
-
-        "Postman": "text-orange-400",
-        "DBeaver": "text-blue-300",
-        "WAMP": "text-purple-500",
-        "Xammp": "text-orange-500",
-        "Asana": "text-orange-400",
-        "Cypress": "text-green-500",
-        "Figma": "text-purple-400",
-
-        "Next.js": "text-gray-500",
-      };
-    
     return colorMap[tag] || "text-green-300";
   };
 
