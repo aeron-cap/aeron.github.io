@@ -67,7 +67,7 @@ const Me = () => {
                   href="https://github.com/aeron-cap"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-green-400 hover:text-white underline text-white"
+                  className="block text-white hover:text-white underline"
                 >
                   → github.com/aeron-cap
                 </a>
@@ -75,7 +75,7 @@ const Me = () => {
                   href="mailto:aeroncaponpon.01@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-green-400 hover:text-white underline text-red-500"
+                  className="block text-red-400 hover:text-white underline"
                 >
                   → aeroncaponpon.01@gmail.com
                 </a>
@@ -83,7 +83,7 @@ const Me = () => {
                   href="https://www.linkedin.com/in/aeron-caponpon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-green-400 hover:text-white underline text-blue-500"
+                  className="block text-blue-400 hover:text-white underline"
                 >
                   → linkedin.com/in/aeron-caponpon
                 </a>
