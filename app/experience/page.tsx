@@ -15,8 +15,8 @@ const Experience = () => {
         <div className="bg-black border-2 border-gray-800 rounded-b-lg p-4 md:p-6">
           <div className="space-y-4 md:space-y-6">
             <div>
-              <p className="text-green-500">$ cd experience/</p>
-              <p className="text-green-300">Changed directory to experience</p>
+              <p className="text-green-500">$ cd <a className="text-white">experience/</a></p>
+              <p className="text-white">Changed directory to experience</p>
             </div>
 
             <ExperienceCards />

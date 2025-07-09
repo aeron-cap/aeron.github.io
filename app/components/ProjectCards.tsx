@@ -155,19 +155,19 @@ const ProjectCards = () => {
       <div className="space-y-8">
         {projectData.map((project) => (
           <div key={project.id} className="pl-4 border-l border-green-400 space-y-2">
-            <p className="text-green-500">$ cat {project.title.toLowerCase().replace(/\s+/g, '_')}.project</p>
+            <p className="text-green-500">$ cat <a className="text-white">{project.title.toLowerCase().replace(/\s+/g, '_')}.project</a></p>
             <div className="pl-4 space-y-1">
               <p>
-                <span className="text-green-300">name:</span> "{project.title}"
+                <span className="text-green-300">name:</span> <a className="text-white"> "{project.title}"  </a>
               </p>
               <p>
-                <span className="text-green-300">year:</span> {project.date}
+                <span className="text-green-300">year:</span> <a className="text-white"> {project.date}   </a>
               </p>
               <p>
-                <span className="text-green-300">type:</span> "{project.type}"
+                <span className="text-green-300">type:</span> <a className="text-white"> "{project.type}"  </a>
               </p>
               <p>
-                <span className="text-green-300">description:</span> "{project.description}"
+                <span className="text-green-300">description:</span> <a className="text-white"> "{project.description}" </a>
               </p>
               <p>
                 <span className="text-green-300">technologies:</span> [{project.tags.map((tag, i) => (
@@ -181,7 +181,7 @@ const ProjectCards = () => {
                 <a
                   href={project.link}
                   target={project.target}
-                  className="underline text-green-400 hover:text-white"
+                  className="underline text-white hover:text-green-400"
                 >
                   {project.link}
                 </a>

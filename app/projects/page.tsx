@@ -15,8 +15,8 @@ const Projects = () => {
         <div className="bg-black border-2 border-gray-800 rounded-b-lg p-4 md:p-6">
           <div className="space-y-4 md:space-y-6">
             <div>
-              <p className="text-green-500">$ cd projects/</p>
-              <p className="text-green-300">Changed directory to projects</p>
+              <p className="text-green-500">$ cd <a className="text-white">projects/</a></p>
+              <p className="text-white">Changed directory to projects</p>
             </div>
             <ProjectCards />
           </div>

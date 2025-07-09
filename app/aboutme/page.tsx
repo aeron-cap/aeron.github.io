@@ -32,18 +32,18 @@ const Me = () => {
             </div>
 
             <div>
-              <p className="text-green-500">$ cat profession.txt</p>
+              <p className="text-green-500">$ cat <a className="text-white">profession.txt</a></p>
               <p><a className="text-blue-500">Web & Software Developer</a> | <a className="text-red-500">Computer Engineering</a> Graduate</p>
             </div>
 
             <div>
               <p className="text-green-500">$ pwd</p>
-              <p>/home/aeron/portfolio</p>
+              <p className="text-white">/home/aeron/portfolio</p>
             </div>
 
             <div>
               <p className="text-green-500">$ location</p>
-              <p>Batangas, Philippines</p>
+              <p className="text-white">Batangas, Philippines</p>
             </div>
 
             <div>
@@ -67,7 +67,7 @@ const Me = () => {
                   href="https://github.com/aeron-cap"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-white hover:text-white underline"
+                  className="block text-white hover:text-green-500 underline"
                 >
                   → github.com/aeron-cap
                 </a>
@@ -75,7 +75,7 @@ const Me = () => {
                   href="mailto:aeroncaponpon.01@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-red-400 hover:text-white underline"
+                  className="block text-red-400 hover:text-green-500 underline"
                 >
                   → aeroncaponpon.01@gmail.com
                 </a>
@@ -83,7 +83,7 @@ const Me = () => {
                   href="https://www.linkedin.com/in/aeron-caponpon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-blue-400 hover:text-white underline"
+                  className="block text-blue-400 hover:text-green-500 underline"
                 >
                   → linkedin.com/in/aeron-caponpon
                 </a>
@@ -94,13 +94,14 @@ const Me = () => {
               <p className="text-green-500">$ help</p>
               <p className="pl-4">Available commands:</p>
               <div className="pl-4 space-y-1">
-                <a href="#experience" className="block hover:text-white">
-                  cd experience/     # View work experience
+                <a href="#experience">
+                  cd <a className=" text-white hover:text-green-500">experience/</a>     # View work experience
                 </a>
-                <a href="#projects" className="block hover:text-white">
-                  cd projects/       # Browse project portfolio
+                <br/>
+                <a href="#projects">
+                  cd <a className=" text-white hover:text-green-500">projects/</a>       # Browse project portfolio
                 </a>
-                <p>exit               # Thanks for visiting!</p>
+                <p>exit              <a className=" text-white"> # Thanks for visiting!</a></p>
               </div>
             </div>
 

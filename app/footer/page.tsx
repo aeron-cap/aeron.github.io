@@ -14,18 +14,18 @@ const Footer = () => {
         <div className="bg-black border-2 border-gray-800 rounded-b-lg p-4 md:p-6">
           <div className="space-y-4">
             <div>
-              <p className="text-green-500">$ cat .metadata</p>
-              <p className="text-green-300 text-sm">
+              <p className="text-green-500">$ cat <a className="text-white">.metadata</a></p>
+              <p className="text-white text-sm">
                 Designed in Figma, programmed using VSCode with Next.js (React) TypeScript and Tailwind CSS.
               </p>
             </div>
             <div>
-              <p className="text-green-500">$ echo "Thanks for visiting!"</p>
-              <p>Thanks for visiting!</p>
+              <p className="text-green-500">$ echo <a className="text-white">"Thanks for visiting!"</a></p>
+              <p className="text-white">Thanks for visiting!</p>
             </div>
             <div>
               <p className="text-green-500">$ exit</p>
-              <p className="text-green-300">Session ended. Have a great day!</p>
+              <p className="text-white">Session ended. Have a great day!</p>
             </div>
             <div className="flex items-center">
               <span className="text-green-500">$ </span>

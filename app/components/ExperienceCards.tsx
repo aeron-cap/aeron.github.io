@@ -106,13 +106,13 @@ const ExperienceCards = () => {
 
   return (
     <div className="space-y-6 text-sm md:text-base font-mono text-green-400">
-      <p className="text-green-500">$ cat experience.json</p>
+      <p className="text-green-500">$ cat <a className=" text-white">experience.json</a></p>
       <pre className="whitespace-pre-wrap">{`[\n`}</pre>
       {experienceData.map((x, index) => (
         <div key={x.id} className="pl-4 border-l border-green-400 space-y-2">
           <p>{`  {`}</p>
           <p>
-            &nbsp;&nbsp;"position": <span className="text-green-300">"{x.position}",</span>
+            &nbsp;&nbsp;"position": <span className="text-white">"{x.position}",</span>
           </p>
           <p>
             &nbsp;&nbsp;"company":{" "}
@@ -120,17 +120,17 @@ const ExperienceCards = () => {
               href={x.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-green-400 hover:text-white"
+              className="underline text-white hover:text-green-400"
             >
               "{x.company}"
             </a>
             ,
           </p>
           <p>
-            &nbsp;&nbsp;"duration": <span className="text-green-300">"{x.duration}",</span>
+            &nbsp;&nbsp;"duration": <span className="text-white">"{x.duration}",</span>
           </p>
           <p>
-            &nbsp;&nbsp;"description": <span className="text-green-300">"{x.description}",</span>
+            &nbsp;&nbsp;"description": <span className="text-white">"{x.description}",</span>
           </p>
           <p>&nbsp;&nbsp;"technologies": [</p>
           <ul className="list-none pl-8">

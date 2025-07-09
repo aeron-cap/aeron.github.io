@@ -7,7 +7,7 @@ const Resume = () => {
 
   return (
     <div className="pl-4 border-l border-green-400 space-y-1 text-sm md:text-base">
-      <p className="text-green-500">$ download resume.pdf</p>
+      <p className="text-green-500">$ download <a className="text-white">resume.pdf</a></p>
       <button
         onClick={downloadFile}
         className="underline text-green-400 hover:text-white transition"
