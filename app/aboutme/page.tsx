@@ -54,9 +54,9 @@ const Me = () => {
             </div>
 
             <div>
-              <p className="text-green-500">$ ./resume --download</p>
+              <p className="text-green-500">$ ./resume --get</p>
               <div className="pl-4 border-l border-green-400 mt-2">
-                <Resume />
+                You can shoot me an email for my resume!
               </div>
             </div>
 
