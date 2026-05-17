@@ -32,7 +32,7 @@ export const DATA = {
   description:
     "A fullstack dev from the Philippines, likes backend stuff, and can tolerate frontend.",
   summary:
-    "A dev with almost 2 years of professional experience and 6 years of programming experience. I build things myself if the available ones does not suit my needs. From my [personal finance mobile application](/#projects), [load testers](/#projects) to test my locally hosted APIs, to experiementing with local AI agents.",
+    "A dev with almost 2 years of professional experience and 6 years of programming experience. I build things myself if the available ones does not suit my needs. From my [personal finance mobile application](/#projects), [load testers](/#projects) to test my locally hosted APIs, to experiementing with local AI agents. Other than that, I enjoy playing competitive pokemon, working out, and hanging out with gf.",
   avatarUrl: "/picofme.png",
   ogImage: "/og_image.png",
   sections: {
