@@ -140,6 +140,8 @@ const sectionComponents: Record<string, React.ReactNode> = {
     <section id="contact">
       <BlurFade delay={BLUR_FADE_DELAY * 16}>
         <ContactSection />
+        <p className="text-xs opacity-20">Template by: dillionverma/portfolio</p>
+        <p className="text-xs opacity-20">Deployed in Netlify, used Astro</p>
       </BlurFade>
     </section>
   ),
