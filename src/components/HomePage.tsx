@@ -102,6 +102,25 @@ const sectionComponents: Record<string, React.ReactNode> = {
       </div>
     </section>
   ),
+  tools: (
+    <section id="tools">
+      <div className="flex min-h-0 flex-col gap-y-4">
+        <BlurFade delay={BLUR_FADE_DELAY * 10}>
+          <h2 className="text-xl font-bold">{DATA.sections.tools.heading}</h2>
+        </BlurFade>
+        <div className="flex flex-wrap gap-2">
+          {DATA.tools.map((tool, id) => (
+            <BlurFade key={tool.name} delay={BLUR_FADE_DELAY * 11 + id * 0.05}>
+              <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
+                {tool.icon && <tool.icon className="size-4 rounded overflow-hidden object-contain" />}
+                <span className="text-foreground text-sm font-medium">{tool.name}</span>
+              </div>
+            </BlurFade>
+          ))}
+        </div>
+      </div>
+    </section>
+  ),
   projects: (
     <section id="projects">
       <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -151,7 +170,7 @@ export default function HomePage() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+              <Avatar className="size-20 md:size-26 border rounded-full shadow-lg ring-4 ring-muted">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
