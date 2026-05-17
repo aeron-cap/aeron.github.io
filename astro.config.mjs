@@ -42,9 +42,9 @@ export default defineConfig({
     sitemap(),
   ],
 
-  markdown: {
-    syntaxHighlight: false,
-    remarkPlugins: [remarkGfm, remarkCodeMeta],
-    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
-  },
+  // markdown: {
+  //   syntaxHighlight: false,
+  //   remarkPlugins: [remarkGfm, remarkCodeMeta],
+  //   rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+  // },
 });
