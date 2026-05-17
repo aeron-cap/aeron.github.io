@@ -3,7 +3,7 @@ export const CONFIG = {
   // Site Settings
   // ---------------------------------------------------------------------------
   site: {
-    url: "https://alexmercer.dev",
+    url: "https://aeron.is-a.dev",
     locale: "en_US",
     twitterHandle: "",
   },

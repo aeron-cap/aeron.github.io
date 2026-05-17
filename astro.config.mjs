@@ -10,6 +10,8 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { remarkCodeMeta } from './src/lib/remark-code-meta.ts';
 import { CONFIG } from './src/data/config.ts';
 
+import netlify from '@astrojs/netlify';
+
 /** @type {import('rehype-pretty-code').Options} */
 const prettyCodeOptions = {
   theme: {
@@ -24,7 +26,7 @@ export default defineConfig({
   site: CONFIG.site.url,
   output: 'server',
 
-  adapter: cloudflare(),
+  adapter: netlify(),
 
   vite: {
     plugins: [tailwindcss()],
