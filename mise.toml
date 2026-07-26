@@ -1,0 +1,7 @@
+[tools]
+node = "22"
+pnpm = "latest"
+
+[tasks]
+dev = "pnpm run dev"
+build = "pnpm run build"
