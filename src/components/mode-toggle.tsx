@@ -2,13 +2,16 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle({ className, onToggle }: { className?: string; onToggle?: () => void }) {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={() => {
+        onToggle?.();
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
+      }}
       aria-label="Toggle theme"
       className={cn(
         "theme-toggle amb-button",

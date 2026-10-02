@@ -280,6 +280,189 @@ body { line-height: 1.65; }
 .work-status-indicator { width: .5rem; height: .5rem; flex: none; border-radius: 50%; background: #22c55e; box-shadow: 0 0 4px #22c55e, 0 0 10px #22c55e80; }
 .section-index { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .75rem; color: var(--muted-foreground); }
 .section-index a:hover { color: var(--primary); }
+
+/* Center the reading column; derive the floating ruler from its left edge. */
+.home-layout {
+  --home-content-width: min(56rem, calc(100% - 25rem));
+  --section-rail-width: 10rem;
+  --section-rail-gap: 1.5rem;
+  --section-rail-left: calc((100% - var(--home-content-width)) / 2 - var(--section-rail-width) - var(--section-rail-gap));
+}
+
+.home-layout .site-width {
+  width: var(--home-content-width);
+  margin-inline: auto;
+}
+
+.home-layout .site-header {
+  border-bottom: 0;
+}
+
+.home-layout:has(.section-rail[data-ready="true"]) .section-index {
+  display: none;
+}
+
+.sound-toggle {
+  position: fixed;
+  left: max(1.5rem, env(safe-area-inset-left));
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  z-index: 35;
+  background: var(--background);
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  min-height: 2.25rem;
+  padding: .5rem .625rem;
+  color: var(--muted-foreground);
+  font-size: .75rem;
+  cursor: pointer;
+}
+
+.sound-toggle:hover,
+.sound-toggle[aria-pressed="true"] {
+  color: var(--primary);
+}
+
+.sound-toggle:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.section-rail {
+  position: fixed;
+  top: 50%;
+  left: var(--section-rail-left);
+  z-index: 30;
+  width: var(--section-rail-width);
+  transform: translateY(-50%);
+}
+
+.section-rail-list {
+  max-height: calc(100dvh - 12rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: .25rem;
+  margin: -.25rem;
+}
+
+.section-rail-list::-webkit-scrollbar {
+  display: none;
+}
+
+.section-rail-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  width: 100%;
+  color: var(--muted-foreground);
+}
+
+.section-rail-line {
+  width: .875rem;
+  height: 1px;
+  flex: none;
+  background: var(--muted-foreground);
+  opacity: .5;
+  transition: width 180ms ease, background 180ms ease, opacity 180ms ease;
+}
+
+.section-rail-link[aria-current="location"] {
+  color: var(--primary);
+}
+
+.section-rail-link[aria-current="location"] .section-rail-line {
+  width: 1.75rem;
+  height: 2px;
+  background: var(--primary);
+  opacity: 1;
+}
+
+.section-rail-link:hover .section-rail-line,
+.section-rail-link:focus-visible .section-rail-line {
+  opacity: 1;
+}
+
+.section-rail-label {
+  position: absolute;
+  left: 2.5rem;
+  font-size: .6875rem;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-.25rem);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.section-rail[data-expanded="true"] .section-rail-label,
+.section-rail-link[aria-current="location"] .section-rail-label,
+.section-rail-link:hover .section-rail-label,
+.section-rail-link:focus-visible .section-rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-rail-detents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: calc(var(--rail-minor-lines) * .25rem);
+  pointer-events: none;
+}
+
+.section-rail-detents span {
+  display: block;
+  width: .3125rem;
+  height: 1px;
+  background: var(--muted-foreground);
+  opacity: .25;
+}
+
+.section-rail-detents span[data-current="true"] {
+  width: .625rem;
+  background: var(--primary);
+  opacity: .8;
+}
+
+@media (max-width: 1100px) {
+  .home-layout {
+    --home-content-width: min(56rem, calc(100% - 6rem));
+    --section-rail-width: 2rem;
+    --section-rail-gap: .5rem;
+  }
+
+  .section-rail-link {
+    height: clamp(1.5rem, 4dvh, 2rem);
+  }
+
+  .sound-toggle {
+    left: max(.75rem, env(safe-area-inset-left));
+    bottom: max(.75rem, env(safe-area-inset-bottom));
+    justify-content: center;
+  }
+
+  /* Compact, line-only rail: never reveal labels or widen the hit area. */
+  .section-rail-list {
+    overflow-x: visible;
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  .section-rail-label {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-layout .hero-title { gap: .5rem; }
+  .home-layout .hero-photo { width: 2.75rem; height: 2.75rem; }
+}
+
+@media (max-height: 540px) and (max-width: 1100px) {
+  .section-rail-link { height: 1.5rem; }
+  .section-rail-detents { height: calc(var(--rail-minor-lines) * .125rem); }
+}
+
 .info-section { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding-block: 2.5rem; border-top: 1px solid var(--border); }
 .section-label { display: flex; flex-direction: column; gap: .625rem; }
 .section-number { color: var(--primary); font-family: var(--font-mono); font-size: .6875rem; }

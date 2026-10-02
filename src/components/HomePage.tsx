@@ -57,7 +57,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section id="hero" className="hero" aria-labelledby="intro-heading">
+      <section id="hero" className="hero" aria-labelledby="intro-heading" tabIndex={-1}>
         <div className="hero-intro">
           <div>
             <p className="eyebrow">Personal portfolio / Fullstack developer</p>
@@ -94,7 +94,7 @@ export default function HomePage() {
       </section>
 
       {orderedSections.map(([key, section], index) => (
-        <section id={key} key={key} className="info-section" aria-labelledby={`${key}-heading`}>
+        <section id={key} key={key} className="info-section" aria-labelledby={`${key}-heading`} tabIndex={-1}>
           <div className="section-label">
             <span className="section-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <h2 id={`${key}-heading`}>{section.heading || key}</h2>

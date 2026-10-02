@@ -135,9 +135,9 @@ const { baseFontSize } = CONFIG.typography;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="min-h-screen bg-background font-sans antialiased relative">
+  <body class:list={["min-h-screen bg-background font-sans antialiased relative", { "home-layout": Astro.url.pathname === "/" }]}>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <NavbarIsland client:load />
+    <NavbarIsland client:load pathname={Astro.url.pathname} />
     <div id="main-content" tabindex="-1" class="site-content site-width">
       <slot />
     </div>
