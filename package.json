@@ -12,7 +12,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "cv:compile": "typst compile --ignore-system-fonts resume/resume.typ public/resume.pdf",
+    "cv:build": "pnpm cv:compile && pnpm build"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.0",

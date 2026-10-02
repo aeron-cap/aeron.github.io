@@ -1,0 +1,65 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { DATA } from "@/data/resume";
+import WorkSection from "@/components/section/work-section";
+import ProjectsSection from "@/components/section/projects-section";
+
+export const prerender = true;
+const downloadName = `${DATA.name.toLowerCase().replace(/\s+/g, "-")}-resume.pdf`;
+---
+
+<Layout title="Résumé" description={`View and download ${DATA.name}'s résumé: experience, projects, education, and technical skills.`}>
+  <main>
+    <header class="resume-header">
+      <p class="eyebrow">Curriculum vitae / PDF document</p>
+      <h1 class="page-heading">Résumé<span class="text-primary">.</span></h1>
+      <p>{DATA.name} · {DATA.location}. View the document below or download a copy. The PDF is typeset with Typst.</p>
+      <div class="document-actions">
+        <a href="/resume.pdf" download={downloadName} class="amb-button action-link action-primary">
+          Download PDF <span aria-hidden="true">↓</span>
+        </a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="amb-button action-link">
+          Open PDF <span aria-hidden="true">↗</span>
+        </a>
+        <a href="#resume-text" class="action-link text-link">Read as text <span aria-hidden="true">↓</span></a>
+      </div>
+    </header>
+
+    <section aria-label="Résumé PDF preview" class="document-viewer amb-panel">
+      <div class="document-toolbar"><span class="eyebrow">Document preview</span><span>resume.pdf</span></div>
+      <iframe class="document-frame" src="/resume.pdf#view=FitH" title={`${DATA.name}'s résumé PDF`} loading="lazy"></iframe>
+    </section>
+    <p class="document-help">Preview not supported by your browser? <a class="text-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Open the PDF</a> or read the text version below.</p>
+
+    <section id="resume-text" class="resume-text" aria-labelledby="text-heading">
+      <h2 id="text-heading">At a glance</h2>
+      <p class="section-description">A readable overview, without a PDF viewer.</p>
+      <p class="section-description"><a class="text-link" href={`mailto:${DATA.contact.email}`}>{DATA.contact.email}</a> · <a class="text-link" href={DATA.contact.social.LinkedIn.url} target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a class="text-link" href={DATA.contact.social.GitHub.url} target="_blank" rel="noopener noreferrer">GitHub</a></p>
+      <section class="info-section" aria-labelledby="cv-work-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">01</span><h2 id="cv-work-heading">Experience</h2></div>
+        <div class="section-body"><WorkSection /></div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-projects-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">02</span><h2 id="cv-projects-heading">Projects</h2></div>
+        <div class="section-body"><ProjectsSection /></div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-education-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">03</span><h2 id="cv-education-heading">Education</h2></div>
+        <div class="section-body experience-list">
+          {DATA.education.map((education) => (
+            <article>
+              <div class="entry-heading"><h3>{education.school}</h3><span class="entry-date">{education.start} — {education.end}</span></div>
+              <p class="entry-subtitle">{education.degree}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-skills-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">04</span><h2 id="cv-skills-heading">Skills &amp; tools</h2></div>
+        <div class="section-body">
+          <ul class="skill-list">{[...DATA.skills, ...DATA.tools].map((skill) => <li class="skill-tag">{skill.name}</li>)}</ul>
+        </div>
+      </section>
+    </section>
+  </main>
+</Layout>

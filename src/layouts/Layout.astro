@@ -3,7 +3,6 @@ import "../styles/global.css";
 import { DATA } from "@/data/resume";
 import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 interface Props {
   title?: string;
@@ -48,7 +47,7 @@ const { baseFontSize } = CONFIG.typography;
           var theme = localStorage.getItem("theme");
           if (
             theme === "dark" ||
-            (!theme &&
+            ((!theme || theme === "system") &&
               window.matchMedia("(prefers-color-scheme: dark)").matches)
           ) {
             document.documentElement.classList.add("dark");
@@ -108,7 +107,6 @@ const { baseFontSize } = CONFIG.typography;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <!-- Primary meta -->
     <title>{pageTitle}</title>
@@ -138,26 +136,14 @@ const { baseFontSize } = CONFIG.typography;
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen bg-background font-sans antialiased relative">
-    <!-- FlickeringGrid header background - matches template exactly -->
-    <div class="absolute inset-0 top-0 left-0 right-0 h-25 overflow-hidden z-0">
-      <FlickeringGrid
-        client:load
-        className="h-full w-full"
-        squareSize={2}
-        gridGap={2}
-        style={{
-          maskImage: "linear-gradient(to bottom, black, transparent)",
-          WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
-        }}
-      />
-    </div>
-
-    <!-- Main content wrapper - matches template's z-10 container exactly -->
-    <div class="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <NavbarIsland client:load />
+    <div id="main-content" tabindex="-1" class="site-content site-width">
       <slot />
     </div>
-
-    <!-- Navbar: ThemeProvider + TooltipProvider + Navbar all in one React island -->
-    <NavbarIsland client:load />
+    <footer class="site-footer site-width">
+      <span>© {new Date().getFullYear()} {DATA.name}</span>
+      <span>Built with Astro. Information first.</span>
+    </footer>
   </body>
 </html>
