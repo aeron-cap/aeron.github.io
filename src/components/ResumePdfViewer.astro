@@ -1,0 +1,150 @@
+---
+interface Props {
+  src: string;
+  filename: string;
+}
+
+const { src, filename } = Astro.props;
+---
+
+<resume-pdf-viewer data-src={src} data-filename={filename}>
+  <section aria-label="Resume PDF preview" class="document-viewer amb-panel">
+    <div class="document-toolbar">
+      <span>{filename}</span>
+      <div class="document-toolbar-actions" role="group" aria-label="Document actions">
+        <!-- <a href={src} download={filename} class="amb-button document-action">Download <span aria-hidden="true">↓</span></a> -->
+        <button type="button" class="amb-button document-action" data-pdf-print disabled>Print <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+    <div class="document-frame document-pages" aria-label="PDF pages; accessible text follows below" tabindex="0" aria-busy="true">
+      <p data-pdf-status role="status">Loading document…</p>
+    </div>
+  </section>
+</resume-pdf-viewer>
+
+<script>
+  import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+  import type { PDFDocumentLoadingTask, PDFDocumentProxy } from "pdfjs-dist";
+
+  class ResumePdfViewer extends HTMLElement {
+    private pdf?: PDFDocumentProxy;
+    private loadingTask?: PDFDocumentLoadingTask;
+    private printFrame?: HTMLIFrameElement;
+    private restorePrint?: () => void;
+
+    async connectedCallback() {
+      const pages = this.querySelector<HTMLDivElement>(".document-pages")!;
+      const status = this.querySelector<HTMLParagraphElement>("[data-pdf-status]")!;
+      const printButton = this.querySelector<HTMLButtonElement>("[data-pdf-print]")!;
+
+      printButton.addEventListener("click", () => void this.printDocument());
+
+      try {
+        // Load PDF.js only on this page, without the browser's native toolbar.
+        const { getDocument, GlobalWorkerOptions } = await import("pdfjs-dist");
+        GlobalWorkerOptions.workerSrc = workerUrl;
+        if (!this.isConnected) return;
+        this.loadingTask = getDocument({ url: this.dataset.src! });
+        this.pdf = await this.loadingTask.promise;
+
+        for (let pageNumber = 1; pageNumber <= this.pdf.numPages; pageNumber++) {
+          const page = await this.pdf.getPage(pageNumber);
+          const viewport = page.getViewport({ scale: 2 });
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+          canvas.setAttribute("aria-hidden", "true");
+          await page.render({ canvas, viewport }).promise;
+          pages.append(canvas);
+        }
+
+        status.hidden = true;
+        printButton.disabled = false;
+      } catch (error) {
+        status.textContent = "Preview unavailable. Download the PDF or read the text version below.";
+        console.error("Unable to load resume preview", error);
+      } finally {
+        pages.setAttribute("aria-busy", "false");
+      }
+    }
+
+    private async printDocument() {
+      if (!this.pdf) return;
+      const button = this.querySelector<HTMLButtonElement>("[data-pdf-print]")!;
+      const status = this.querySelector<HTMLParagraphElement>("[data-pdf-status]")!;
+      button.disabled = true;
+
+      try {
+        this.restorePrint?.();
+        this.printFrame?.remove();
+        const frame = document.createElement("iframe");
+        this.printFrame = frame;
+        frame.className = "document-print-frame";
+        frame.title = "Print resume";
+        frame.setAttribute("aria-hidden", "true");
+        frame.tabIndex = -1;
+        const loaded = new Promise<void>((resolve) => frame.addEventListener("load", () => resolve(), { once: true }));
+        frame.srcdoc = `<!doctype html><html><head><style>
+          @page { size: A4; margin: 0; }
+          html, body { margin: 0; padding: 0; }
+          img { display: block; width: 210mm; height: 297mm; break-after: page; }
+          img:last-child { break-after: auto; }
+        </style></head><body></body></html>`;
+        document.body.append(frame);
+        await loaded;
+
+        const printWindow = frame.contentWindow!;
+        const printDocument = frame.contentDocument!;
+        const printTitle = this.dataset.filename!.replace(/\.pdf$/i, "");
+        printDocument.title = printTitle;
+
+        // Render every page at print resolution, not the clipped preview viewport.
+        for (let pageNumber = 1; pageNumber <= this.pdf.numPages; pageNumber++) {
+          const page = await this.pdf.getPage(pageNumber);
+          const viewport = page.getViewport({ scale: 3 });
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+          await page.render({ canvas, viewport, intent: "print" }).promise;
+          const image = printDocument.createElement("img");
+          image.src = canvas.toDataURL("image/png");
+          printDocument.body.append(image);
+          await image.decode();
+        }
+
+        // Browsers use either the parent or frame title for Save as PDF.
+        const previousTitle = document.title;
+        document.title = printTitle;
+        const restore = () => {
+          document.title = previousTitle;
+          window.removeEventListener("afterprint", restore);
+          printWindow.removeEventListener("afterprint", restore);
+          this.restorePrint = undefined;
+        };
+        this.restorePrint = restore;
+        window.addEventListener("afterprint", restore, { once: true });
+        printWindow.addEventListener("afterprint", restore, { once: true });
+        printWindow.focus();
+        printWindow.print();
+      } catch (error) {
+        this.restorePrint?.();
+        this.printFrame?.remove();
+        status.hidden = false;
+        status.textContent = "Unable to print. Download the PDF and print it from your PDF reader.";
+        console.error("Unable to print resume", error);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    disconnectedCallback() {
+      this.restorePrint?.();
+      this.printFrame?.remove();
+      void this.loadingTask?.destroy();
+    }
+  }
+
+  if (!customElements.get("resume-pdf-viewer")) {
+    customElements.define("resume-pdf-viewer", ResumePdfViewer);
+  }
+</script>

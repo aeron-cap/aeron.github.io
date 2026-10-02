@@ -26,7 +26,9 @@ export default defineConfig({
   site: CONFIG.site.url,
   output: 'server',
 
-  adapter: netlify(),
+  // Astro handles local SSR itself; only production needs Netlify's adapter.
+  // Skip the platform emulator (and its Deno runtime) during `astro dev`.
+  adapter: process.env.NODE_ENV === 'development' ? undefined : netlify(),
 
   vite: {
     plugins: [tailwindcss()],

@@ -1,0 +1,98 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { DATA } from "@/data/resume";
+import { CV } from "@/data/cv";
+import ResumePdfViewer from "@/components/ResumePdfViewer.astro";
+
+export const prerender = true;
+const downloadName = "Aeron_Caponpon-Resume.pdf";
+const resumeUrl = `/${downloadName}`;
+---
+
+<Layout title="Resume" description={`View and download ${DATA.name}'s resume: experience, projects, education, and technical skills.`}>
+  <main>
+    <header class="resume-header">
+      <p class="eyebrow">My CV / Resume</p>
+      <h1 class="page-heading">Resume<span class="text-primary">.</span></h1>
+      <p>View the document below or download a copy. The PDF is typeset with Typst.</p>
+      <div class="document-actions">
+        <a href={resumeUrl} download={downloadName} class="amb-button action-link action-primary">
+          Download PDF <span aria-hidden="true">↓</span>
+        </a>
+        <a href={resumeUrl} target="_blank" rel="noopener noreferrer" class="amb-button action-link">
+          Open PDF <span aria-hidden="true">↗</span>
+        </a>
+        <a href="#resume-text" class="action-link text-link">Read as text <span aria-hidden="true">↓</span></a>
+      </div>
+    </header>
+
+    <ResumePdfViewer src={resumeUrl} filename={downloadName} />
+    <p class="document-help">Preview not supported by your browser? <a class="text-link" href={resumeUrl} download={downloadName}>Download the PDF</a> or read the text version below.</p>
+
+    <section id="resume-text" class="resume-text" aria-labelledby="text-heading">
+      <h2 id="text-heading">At a glance</h2>
+      <p class="section-description">A readable overview, without a PDF viewer.</p>
+      <p class="section-description"><a class="text-link" href={`mailto:${DATA.contact.email}`}>{DATA.contact.email}</a> · <a class="text-link" href={DATA.contact.social.LinkedIn.url} target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a class="text-link" href={DATA.contact.social.GitHub.url} target="_blank" rel="noopener noreferrer">GitHub</a></p>
+      <section class="info-section" aria-labelledby="cv-skills-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">01</span><h2 id="cv-skills-heading">Skills</h2></div>
+        <div class="section-body experience-list">
+          {CV.skills.map((skill) => (
+            <div><h3 class="entry-subtitle font-semibold">{skill.category}</h3><p class="entry-description">{skill.items}</p></div>
+          ))}
+        </div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-work-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">02</span><h2 id="cv-work-heading">Experience</h2></div>
+        <div class="section-body experience-list">
+          {CV.work.map((work) => (
+            <article>
+              <div class="entry-heading"><h3>{work.company}</h3><span class="entry-date">{work.location}</span></div>
+              <div class="experience-list mt-3">
+                {work.roles.map((role) => (
+                  <div>
+                    <div class="entry-heading"><h3>{role.title}</h3><span class="entry-date">{role.dates}</span></div>
+                    <ul class="entry-description list-disc pl-5 space-y-2">{role.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-projects-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">03</span><h2 id="cv-projects-heading">Projects</h2></div>
+        <div class="section-body experience-list">
+          {CV.projects.map((project) => (
+            <article>
+              <div class="entry-heading"><h3>{project.title}</h3><span class="entry-date">{project.dates}</span></div>
+              <ul class="entry-description list-disc pl-5 space-y-2">{project.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-contributions-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">04</span><h2 id="cv-contributions-heading">Open source</h2></div>
+        <div class="section-body experience-list">
+          {CV.contributions.map((contribution) => (
+            <article>
+              <div class="entry-heading"><h3>{contribution.title}</h3><span class="entry-date">{contribution.dates}</span></div>
+              <p class="entry-subtitle">{contribution.role}</p>
+              <ul class="entry-description list-disc pl-5 space-y-2">{contribution.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section class="info-section" aria-labelledby="cv-education-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">05</span><h2 id="cv-education-heading">Education</h2></div>
+        <div class="section-body">
+          <article>
+            <div class="entry-heading"><h3>{CV.education.school}</h3><span class="entry-date">{CV.education.year}</span></div>
+            <p class="entry-subtitle">{CV.education.degree} · {CV.education.location}</p>
+            <p class="entry-description">General Weighted Average (GWA): {CV.education.gwa}</p>
+            <p class="entry-description"><strong>Relevant Coursework:</strong> {CV.education.coursework}</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+</Layout>
