@@ -265,6 +265,7 @@ body { line-height: 1.65; }
 .hero { padding-bottom: 3rem; }
 .hero-intro { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
 .hero h1, .page-heading { font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; letter-spacing: -.055em; line-height: 1.15; margin-block: .75rem 1rem; }
+.hero-title { display: flex; align-items: center; gap: .75rem; }
 .hero-description { max-width: 34rem; color: var(--muted-foreground); font-size: 1.0625rem; }
 .hero-photo { width: 5rem; height: 5rem; padding: .25rem; flex: none; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: .2rem; }
@@ -275,6 +276,8 @@ body { line-height: 1.65; }
 .text-link:hover { text-decoration-color: var(--primary); }
 .profile-strip { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2rem; padding: 1rem 1.25rem; font-size: .8125rem; }
 .profile-strip dt { margin-bottom: .25rem; }
+.work-status { display: flex; align-items: center; gap: .5rem; }
+.work-status-indicator { width: .5rem; height: .5rem; flex: none; border-radius: 50%; background: #22c55e; box-shadow: 0 0 4px #22c55e, 0 0 10px #22c55e80; }
 .section-index { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .75rem; color: var(--muted-foreground); }
 .section-index a:hover { color: var(--primary); }
 .info-section { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding-block: 2.5rem; border-top: 1px solid var(--border); }
@@ -303,8 +306,15 @@ body { line-height: 1.65; }
 .resume-header { padding-bottom: 2rem; }
 .resume-header > p { max-width: 38rem; color: var(--muted-foreground); font-size: .9375rem; }
 .document-viewer { padding: .5rem; }
-.document-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; padding: .75rem; font-size: .75rem; color: var(--muted-foreground); }
+.document-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; padding: .75rem; font-size: .75rem; color: var(--muted-foreground); }
+.document-toolbar-actions { display: flex; gap: .5rem; }
+.document-action { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.25rem; padding: .375rem .75rem; cursor: pointer; }
+.document-action:disabled { opacity: .5; cursor: not-allowed; }
 .document-frame { display: block; width: 100%; height: 72vh; min-height: 32rem; border: 1px solid var(--border); border-radius: .25rem; background: white; }
+.document-pages { overflow: auto; padding: .75rem; color: #171b22; }
+.document-pages canvas { display: block; width: 100%; height: auto; margin-bottom: .75rem; }
+.document-print-frame { position: fixed; left: -10000px; top: 0; width: 210mm; height: 297mm; border: 0; }
+resume-pdf-viewer { display: block; }
 .document-help { margin-top: .75rem; font-size: .75rem; color: var(--muted-foreground); }
 .resume-text { margin-top: 3rem; }
 .resume-text > h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: .75rem; }

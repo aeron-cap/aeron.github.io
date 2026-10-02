@@ -12,8 +12,9 @@ export default function Navbar() {
     <header className="site-header site-width">
       <nav className="site-nav" aria-label="Main navigation">
         <a href="/" className="site-brand" aria-label={`${DATA.name} — home`}>
-          <span className="brand-mark amb-sheet">{DATA.initials}</span>
-          <span>{DATA.name}</span>
+          <img src="/favicon.svg" alt="" className="brand-mark" width={32} height={32} />
+          {/*<span className="brand-mark amb-sheet">{DATA.initials}</span>*/}
+          {/*<span>{DATA.name}</span>*/}
         </a>
         <div className="nav-links">
           {DATA.navbar.map((item) => {

@@ -44,7 +44,7 @@ const sectionComponents: Record<string, ReactNode> = {
   cv: (
     <div>
       <p className="section-description">{DATA.sections.cv.text}</p>
-      <a href="/cv" className="text-link">View résumé <ArrowUpRight size={13} aria-hidden="true" /></a>
+      <a href="/cv" className="text-link">View Resume <ArrowUpRight size={13} aria-hidden="true" /></a>
     </div>
   ),
 };
@@ -61,21 +61,32 @@ export default function HomePage() {
         <div className="hero-intro">
           <div>
             <p className="eyebrow">Personal portfolio / Fullstack developer</p>
-            <h1 id="intro-heading">{DATA.name}<span className="text-primary">.</span></h1>
+            <div className="hero-title">
+              <h1 id="intro-heading">{DATA.name}<span className="text-primary">.</span></h1>
+              <div className="hero-photo">
+                <img src={DATA.avatarUrl} alt={DATA.name} width={80} height={80} />
+              </div>
+            </div>
             <p className="hero-description">{DATA.description}</p>
-          </div>
-          <div className="hero-photo amb-sheet">
-            <img src={DATA.avatarUrl} alt={DATA.name} width={80} height={80} />
           </div>
         </div>
         <div className="hero-actions">
-          <a href="/cv" className="amb-button action-link action-primary">View résumé <ArrowUpRight size={14} aria-hidden="true" /></a>
+          <a href="/cv" className="amb-button action-link action-primary">View Resume <ArrowUpRight size={14} aria-hidden="true" /></a>
           {DATA.sections.projects.enabled && <a href="#projects" className="amb-button action-link">Explore projects <ArrowDown size={14} aria-hidden="true" /></a>}
         </div>
         <dl className="profile-strip amb-panel">
+          <div>
+            <dt className="eyebrow">Status</dt>
+            <dd className="work-status">
+              {DATA.openToWork && <span className="work-status-indicator" aria-hidden="true" />}
+              {DATA.workStatus}
+            </dd>
+          </div>
           <div><dt className="eyebrow">Based in</dt><dd>{DATA.location}</dd></div>
+          <div><dt className="eyebrow">Timezone</dt><dd>{DATA.timezone}</dd></div>
           <div><dt className="eyebrow">Interests</dt><dd>Backend systems &amp; DevOps</dd></div>
-          <div><dt className="eyebrow">Elsewhere</dt><dd><a className="text-link" href={DATA.contact.social.GitHub.url} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={12} aria-hidden="true" /></a></dd></div>
+          <div><dt className="eyebrow">Currently Working On</dt><dd>News Aggregator</dd></div>
+          {/*<div><dt className="eyebrow">Elsewhere</dt><dd><a className="text-link" href={DATA.contact.social.GitHub.url} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={12} aria-hidden="true" /></a></dd></div>*/}
         </dl>
         <nav className="section-index" aria-label="On this page">
           {orderedSections.map(([key, section]) => <a key={key} href={`#${key}`}>{section.heading || key}</a>)}
