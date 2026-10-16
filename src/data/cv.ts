@@ -74,7 +74,7 @@ export const CV = {
       role: "Electron/TypeScript Contributor",
       dates: "Ongoing",
       highlights: [
-        "Contributed the Windows git credential manager support to the built-in Git add-on, platform-specific credential-helper configuration and docs, delivered through upstream review.",
+        "Contributed the Windows git credential manager support to the built-in Git add-on, various bug fixes and docs, delivered through upstream review."
       ],
     },
   ],

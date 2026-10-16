@@ -82,9 +82,9 @@
 
 #v(8pt)
 #block(sticky: true, below: 4pt)[
-  *Hibi - note-taking application* | Electron/TypeScript Contributor | Ongoing
+  *Hibi - note-taking application* | Electron/TypeScript Maintainer | Ongoing
 ]
-- Contributed the Windows git credential manager support to the built-in Git add-on, platform-specific credential-helper configuration and docs, delivered through upstream review.
+- Contributed the Windows git credential manager support to the built-in Git add-on, various bug fixes and docs, delivered through upstream review.
 
 #section("EDUCATION")
 #row("BATANGAS STATE UNIVERSITY - ALANGILAN", "Batangas City", bold: true)

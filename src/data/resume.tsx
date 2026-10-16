@@ -1,5 +1,15 @@
 import { Icons } from "@/components/icons";
-import { Activity, ChartNoAxesCombined, Database, FileText, GitBranch, House, Server, TestTube2, Workflow } from "lucide-react";
+import {
+  Activity,
+  ChartNoAxesCombined,
+  Database,
+  FileText,
+  GitBranch,
+  House,
+  Server,
+  TestTube2,
+  Workflow,
+} from "lucide-react";
 import { CV } from "@/data/cv";
 import { Typescript } from "@/components/ui/svgs/typescript";
 import { Nodejs } from "@/components/ui/svgs/nodejs";
@@ -48,8 +58,10 @@ export const DATA = {
   location: "Batangas, PH",
   locationLink: "",
   timezone: "GMT+8",
-  description: "A full-stack developer from the Philippines, focused on backend systems, database performance, and DevOps.",
-  summary: "A dev more than 2 years of professional experience and 6 years of programming experience. I build things myself if the available ones does not suit my needs. Constantly learning and upskilling everyday. Currently learning Golang and Software Infrastructure.",
+  description:
+    "A full-stack developer from the Philippines, focused on backend systems, database performance, and DevOps.",
+  summary:
+    "A dev more than 2 years of professional experience and 6 years of programming experience. I build things myself if the available ones does not suit my needs. Constantly learning and upskilling everyday. Currently learning Golang and Software Infrastructure.",
   avatarUrl: "/picofme.png",
   ogImage: "/og_image.png",
   sections: {
@@ -101,7 +113,7 @@ export const DATA = {
       text: "Download my resume.",
     },
   },
-   photos: [] as Photo[],
+  photos: [] as Photo[],
   skills: [
     { name: "TypeScript", icon: Typescript },
     { name: "Go", icon: Golang },
@@ -193,7 +205,8 @@ export const DATA = {
       logoUrl: "https://aesiph.com/images/logo.png",
       start: "September 2024",
       end: undefined,
-      description: "Build and maintain Laravel/Angular SaaS features for 8+ enterprise clients. Improved query performance by up to 95%, cut large Excel exports to under 10 seconds, and lead development for one client.",
+      description:
+        "Build and maintain Laravel/Angular SaaS features for 8+ enterprise clients. Improved query performance by up to 95%, cut large Excel exports to under 10 seconds, and lead development for one client.",
     },
     {
       company: CV.work[0].company,
@@ -204,7 +217,8 @@ export const DATA = {
       logoUrl: "https://aesiph.com/images/logo.png",
       start: "February 2024",
       end: "May 2024",
-      description: "Designed the backend and relational database for an internal billing app, and built a React prototype to kick-start MVP development.",
+      description:
+        "Designed the backend and relational database for an internal billing app, and built a React prototype to kick-start MVP development.",
     },
   ],
   projects: [
@@ -213,7 +227,8 @@ export const DATA = {
       href: "",
       dates: "Ongoing",
       active: true,
-      description: "A self-hosted Go news aggregator with Python NLP scoring, turning RSS and Atom feeds into a daily digest of 5–10 relevant articles.",
+      description:
+        "A self-hosted Go news aggregator with Python NLP scoring, turning RSS and Atom feeds into a daily digest of 5–10 relevant articles.",
       technologies: ["Go", "Python", "SQLite", "gofeed", "WordNet"],
       links: [
         {
@@ -230,7 +245,8 @@ export const DATA = {
       href: "",
       dates: CV.projects[1].dates,
       active: true,
-      description: "A local AI assistant running a 3B model within 8 GB RAM, with persistent memory and sandboxed tools built in Go.",
+      description:
+        "A local AI assistant running a 3B model within 8 GB RAM, with persistent memory and sandboxed tools built in Go.",
       technologies: ["Go", "SQLite", "Linux", "LLM tool calling"],
       links: [],
       image: "",
@@ -241,7 +257,8 @@ export const DATA = {
       href: "",
       dates: "Ongoing",
       active: true,
-      description: "A Go system-information display inspired by fastfetch, with a boids simulation.",
+      description:
+        "A Go system-information display inspired by fastfetch, with a boids simulation.",
       technologies: ["Go"],
       links: [
         {
@@ -275,7 +292,8 @@ export const DATA = {
       href: "",
       dates: "Ongoing",
       active: true,
-      description: "Contributed a sortable resources page to BetterGov PH’s SALN Tracker, delivered through a reviewed and merged 28-file pull request.",
+      description:
+        "Contributed a sortable resources page to BetterGov PH’s SALN Tracker, delivered through a reviewed and merged 28-file pull request.",
       technologies: ["React", "TypeScript", "JSON"],
       links: [
         {
@@ -297,9 +315,21 @@ export const DATA = {
       href: "",
       dates: CV.contributions[1].dates,
       active: true,
-      description: "Added Windows Git Credential Manager support to Hibi’s built-in Git add-on, including platform-specific configuration and docs.",
+      description:
+        "Added Windows Git Credential Manager support to Hibi’s built-in Git add-on, did various bug fixes and docs.",
       technologies: ["Electron", "TypeScript", "Git", "Windows"],
-      links: [],
+      links: [
+        {
+          type: "Website",
+          href: "https://www.hibi.garden/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/schmayterling/hibi",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
       image: "",
       video: "",
     },
@@ -316,5 +346,5 @@ export const DATA = {
       end: CV.education.year,
     },
   ],
-   hackathons: [] as Hackathon[],
+  hackathons: [] as Hackathon[],
 } as const;
