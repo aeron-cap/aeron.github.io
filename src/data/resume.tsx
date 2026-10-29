@@ -290,7 +290,7 @@ export const DATA = {
     {
       title: CV.contributions[0].title,
       href: "",
-      dates: "Ongoing",
+      dates: CV.contributions[0].dates,
       active: true,
       description:
         "Contributed a sortable resources page to BetterGov PH’s SALN Tracker, delivered through a reviewed and merged 28-file pull request.",
@@ -316,7 +316,7 @@ export const DATA = {
       dates: CV.contributions[1].dates,
       active: true,
       description:
-        "Added Windows Git Credential Manager support to Hibi’s built-in Git add-on, did various bug fixes and docs.",
+        "Windows maintainer for Hibi, a cross-platform note taking application built with Electron. Authored a number of merged PRs and currently maintaining through fixes and features.",
       technologies: ["Electron", "TypeScript", "Git", "Windows"],
       links: [
         {

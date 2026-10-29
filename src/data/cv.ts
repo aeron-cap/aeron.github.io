@@ -62,8 +62,8 @@ export const CV = {
   contributions: [
     {
       title: "SALN Tracker - BetterGov PH",
-      role: "React/TypeScript Contributor",
-      dates: "Ongoing",
+      role: "React/TypeScript",
+      dates: "Ongoing | Contributor",
       highlights: [
         "Added a resources page to BetterGov PH’s SALN Tracker - React codebase, integrating structured JSON metadata, sortable resource cards, navigation updates, and static preview assets within the existing design system.",
         "Delivered the feature through a reviewed and merged open-source pull request spanning 28 files.",
@@ -71,10 +71,10 @@ export const CV = {
     },
     {
       title: "Hibi - note-taking application",
-      role: "Electron/TypeScript Contributor",
-      dates: "Ongoing",
+      role: "Electron/TypeScript",
+      dates: "Ongoing | Windows Maintainer",
       highlights: [
-        "Contributed the Windows git credential manager support to the built-in Git add-on, various bug fixes and docs, delivered through upstream review."
+        "Windows maintainer for Hibi, a cross-platform note taking application built with Electron. Authored a number of merged PRs and currently maintaining through fixes and features.",
       ],
     },
   ],

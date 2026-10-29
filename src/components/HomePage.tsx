@@ -78,7 +78,7 @@ export default function HomePage() {
           <div>
             <dt className="eyebrow">Status</dt>
             <dd className="work-status">
-              {DATA.openToWork && <span className="work-status-indicator" aria-hidden="true" />}
+              {/*{DATA.openToWork && <span className="work-status-indicator" aria-hidden="true" />}*/}
               {DATA.workStatus}
             </dd>
           </div>

@@ -13,7 +13,7 @@
   #stack(
     dir: ttb,
     spacing: 4pt,
-    text(size: 11pt, weight: "bold", fill: rgb("#1D4ED8"), it.body),
+    text(size: 11pt, weight: "bold", fill: rgb("#000000"), it.body),
     line(length: 100%, stroke: 0.5pt + black),
   )
 ]
@@ -34,7 +34,7 @@
 #let linkedin = "https://linkedin.com/in/aeron-caponpon"
 
 #align(center)[
-  #text(size: 20pt, weight: "bold", fill: rgb("#1D4ED8"))[AERON CAPONPON]
+  #text(size: 20pt, weight: "bold", fill: rgb("#000000"))[AERON CAPONPON]
   #v(4pt)
   #text(size: 10pt)[
     PH - GMT+8 | #link("mailto:" + email, email) | #link(linkedin, "linkedin.com/in/aeron-caponpon") | #link(github, "github.com/aeron-cap") | #link(website, "aeron.is-a.dev")
@@ -75,16 +75,17 @@
 
 #section("OPEN SOURCE CONTRIBUTIONS")
 #block(sticky: true, below: 4pt)[
-  *SALN Tracker - BetterGov PH* | React/TypeScript Contributor | Ongoing
+  *SALN Tracker - BetterGov PH* | React/TypeScript | Contributor
 ]
 - Added a resources page to BetterGov PH’s SALN Tracker - React codebase, integrating structured JSON metadata, sortable resource cards, navigation updates, and static preview assets within the existing design system.
 - Delivered the feature through a reviewed and merged open-source pull request spanning 28 files.
 
 #v(8pt)
 #block(sticky: true, below: 4pt)[
-  *Hibi - note-taking application* | Electron/TypeScript Maintainer | Ongoing
+  *Hibi - note-taking application* | Electron/TypeScript | Windows Maintainer 
 ]
-- Contributed the Windows git credential manager support to the built-in Git add-on, various bug fixes and docs, delivered through upstream review.
+- Windows maintainer for Hibi, a cross-platform note taking application built with Electron. Authored a number of merged PRs and currently maintaining through fixes and features.
+
 
 #section("EDUCATION")
 #row("BATANGAS STATE UNIVERSITY - ALANGILAN", "Batangas City", bold: true)
