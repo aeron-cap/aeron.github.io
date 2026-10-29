@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { DATA } from "@/data/resume";
 import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
+import TopographyBackdrop from "@/components/TopographyBackdrop.astro";
 
 interface Props {
   title?: string;
@@ -136,6 +137,7 @@ const { baseFontSize } = CONFIG.typography;
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class:list={["min-h-screen bg-background font-sans antialiased relative", { "home-layout": Astro.url.pathname === "/" }]}>
+    <TopographyBackdrop />
     <a class="skip-link" href="#main-content">Skip to content</a>
     <NavbarIsland client:load pathname={Astro.url.pathname} />
     <div id="main-content" tabindex="-1" class="site-content site-width">

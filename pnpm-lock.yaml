@@ -110,6 +110,9 @@ importers:
       tailwindcss:
         specifier: ^4.2.4
         version: 4.2.4
+      topolines:
+        specifier: 0.3.0
+        version: 0.3.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
@@ -4853,6 +4856,17 @@ packages:
 
   tomlify-j0.4@3.0.0:
     resolution: {integrity: sha512-2Ulkc8T7mXJ2l0W476YC/A209PR38Nw8PuaCNtk9uI3t1zzFdGQeWYGQvmj2PZkVvRC/Yoi4xQKMRnWc/N29tQ==}
+
+  topolines@0.3.0:
+    resolution: {integrity: sha512-rLDChbH5LGDqdTeE2iRNw1KisXtK8sr9jVm+X8oSIDtKMzb5KKyZEbbWrpfn4CkktJuMk1eVCHg+9JnBqTssLQ==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
@@ -10890,6 +10904,11 @@ snapshots:
   toml@3.0.0: {}
 
   tomlify-j0.4@3.0.0: {}
+
+  topolines@0.3.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+    optionalDependencies:
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
 
   tr46@0.0.3: {}
 

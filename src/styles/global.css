@@ -243,7 +243,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { line-height: 1.65; }
+body { line-height: 1.65; isolation: isolate; }
 ::selection { background: var(--accent); color: var(--accent-foreground); }
 :focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
 [id] { scroll-margin-top: 2rem; }

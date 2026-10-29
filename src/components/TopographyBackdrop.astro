@@ -1,0 +1,152 @@
+<topography-backdrop aria-hidden="true">
+  <div class="topography-cursor" data-field="cursor"></div>
+  <div class="topography-edge topography-top" data-field="top"></div>
+  <div class="topography-edge topography-bottom" data-field="bottom"></div>
+</topography-backdrop>
+
+<script>
+  import { TopoField } from "topolines";
+
+  class TopographyBackdrop extends HTMLElement {
+    private fields: TopoField[] = [];
+    private desktop = window.matchMedia("(min-width: 769px) and (hover: hover) and (pointer: fine)");
+    private motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    private themeObserver?: MutationObserver;
+
+    connectedCallback() {
+      this.desktop.addEventListener("change", this.mountFields);
+      this.motion.addEventListener("change", this.updateTheme);
+      this.themeObserver = new MutationObserver(this.updateTheme);
+      this.themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+      window.addEventListener("pointermove", this.followPointer, { passive: true });
+      window.addEventListener("blur", this.hidePointer);
+      document.documentElement.addEventListener("pointerleave", this.hidePointer);
+      this.mountFields();
+    }
+
+    disconnectedCallback() {
+      this.fields.forEach((field) => field.destroy());
+      this.fields = [];
+      this.themeObserver?.disconnect();
+      this.desktop.removeEventListener("change", this.mountFields);
+      this.motion.removeEventListener("change", this.updateTheme);
+      window.removeEventListener("pointermove", this.followPointer);
+      window.removeEventListener("blur", this.hidePointer);
+      document.documentElement.removeEventListener("pointerleave", this.hidePointer);
+    }
+
+    private mountFields = () => {
+      this.fields.forEach((field) => field.destroy());
+      this.fields = [];
+      this.removeAttribute("data-active");
+      const selector = this.desktop.matches ? '[data-field="cursor"]' : '.topography-edge';
+      this.querySelectorAll<HTMLElement>(selector).forEach((host) => {
+        this.fields.push(new TopoField(host, {
+          seed: `aeron-terrain-${host.dataset.field}`,
+          scale: this.desktop.matches ? 2.6 : 1.8,
+          levels: 14,
+          lineWidth: 1,
+          warp: .24,
+          speed: this.desktop.matches ? .002 : .006,
+          drift: [.012, .006],
+          maxDpr: 1,
+          interactive: this.desktop.matches && !this.motion.matches,
+          mouseStrength: .24,
+          mouseRadius: .26,
+        }));
+      });
+      this.updateTheme();
+    };
+
+    private updateTheme = () => {
+      const color = getComputedStyle(this).getPropertyValue("--topography-color").trim();
+      const dark = document.documentElement.classList.contains("dark");
+      this.fields.forEach((field) => field.setOptions({
+        color,
+        opacity: dark ? .12 : .16,
+        interactive: this.desktop.matches && !this.motion.matches,
+      }));
+    };
+
+    private followPointer = (event: PointerEvent) => {
+      if (!this.desktop.matches || event.pointerType === "touch") return;
+      // Reduced motion keeps the desktop map still, with a broad static fade.
+      if (this.motion.matches) return;
+      this.style.setProperty("--pointer-x", `${event.clientX}px`);
+      this.style.setProperty("--pointer-y", `${event.clientY}px`);
+      this.setAttribute("data-active", "true");
+    };
+
+    private hidePointer = () => {
+      this.removeAttribute("data-active");
+    };
+  }
+
+  if (!customElements.get("topography-backdrop")) {
+    customElements.define("topography-backdrop", TopographyBackdrop);
+  }
+</script>
+
+<style>
+  topography-backdrop {
+    --topography-color: #64748b;
+    --pointer-x: 50vw;
+    --pointer-y: 25vh;
+    position: absolute;
+    inset: 0;
+    display: block;
+    z-index: -1;
+    overflow: clip;
+    pointer-events: none;
+  }
+
+  :global(.dark) topography-backdrop {
+    --topography-color: #a3b3c8;
+  }
+
+  .topography-cursor { display: none; }
+
+  .topography-edge {
+    position: absolute;
+    inset-inline: 0;
+    height: min(25rem, 65svh);
+    opacity: .8;
+  }
+
+  .topography-top {
+    top: 0;
+    mask-image: linear-gradient(to bottom, #000, rgb(0 0 0 / 60%) 30%, transparent);
+  }
+
+  .topography-bottom {
+    bottom: 0;
+    mask-image: linear-gradient(to top, #000, rgb(0 0 0 / 60%) 30%, transparent);
+  }
+
+  @media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+    .topography-edge { display: none; }
+
+    .topography-cursor {
+      display: block;
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 500ms ease;
+      mask-image: radial-gradient(circle 250px at var(--pointer-x) var(--pointer-y), #000 0%, rgb(0 0 0 / 75%) 35%, transparent 100%);
+    }
+
+    topography-backdrop[data-active] .topography-cursor { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .topography-cursor {
+      opacity: .65;
+      transition: none;
+      mask-image: linear-gradient(to bottom, #000, transparent 65%);
+    }
+  }
+
+  @media print {
+    topography-backdrop { display: none; }
+  }
+</style>
