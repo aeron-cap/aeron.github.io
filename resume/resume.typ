@@ -64,9 +64,9 @@
 - Designed initial backend architecture and relational database design for an internal billing web application; developed a high-fidelity mockup and functional prototype using React, which spearheaded the MVP to development.
 
 #section("PROJECTS")
-#row("NEWS AGGREGATOR", "Ongoing", bold: true)
-- Developing a self-hosted news aggregation pipeline in Go, using goroutines and gofeed to concurrently ingest and parse multi-format syndication feeds (RSS 2.0, Atom 1.0) into an embedded SQLite database.
-- Integrated a Python NLP scoring pipeline leveraging WordNet semantic distance, filtering out duplicate or low-relevance content and ranking candidate stories to produce a daily digest of top 5–10 articles.
+#row([POCKET NEWS | #link("https://github.com/aeron-cap/pocket-news", "github.com/aeron-cap/pocket-news")], "Ongoing", bold: true)
+- Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL, shipped via GitHub Actions CI/CD to AWS.
+- Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).
 
 #v(8pt)
 #row("LOCAL AI ASSISTANT", "Ongoing", bold: true)

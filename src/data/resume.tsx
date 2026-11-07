@@ -62,7 +62,7 @@ export const DATA = {
     "Full-stack developer from the Philippines with 2+ years of professional experience, focused on backend systems, database performance, and DevOps. When existing tools don't fit, I build my own.",
   summary:
     "A developer with 2+ years of professional experience and 6 years of programming experience. I build things myself when the available ones don't suit my needs. Currently learning Go and software infrastructure.",
-  currentlyBuilding: "News Aggregator",
+  currentlyBuilding: "Pocket News",
   avatarUrl: "/picofme.webp",
   ogImage: "/og_image.png",
   // Portfolio order: what I build first, then where I've worked and studied.
@@ -238,19 +238,19 @@ export const DATA = {
       dates: "Ongoing",
       active: true,
       description:
-        "A self-hosted Go news aggregator with Python NLP scoring, turning RSS and Atom feeds into a daily digest of 5–10 relevant articles.",
-      technologies: ["Go", "Python", "SQLite"],
+        "A Go link aggregator that pulls tech news from multiple sources into one daily reading list, ranked by a Python WordNet scoring pipeline and stored in PostgreSQL. Feed fetching is locked down against SSRF: public URLs only, 8-second timeouts, and a 5 MiB response cap.",
+      technologies: ["Go", "Python", "PostgreSQL", "React", "TypeScript", "AWS"],
       kind: "project",
       featured: true,
-      cover: { flow: true, steps: ["RSS / Atom", "Go workers", "NLP scoring", "Daily digest"] },
       links: [
         {
           type: "Source",
-          href: "https://github.com/aeron-cap/news-aggregate-go",
+          href: "https://github.com/aeron-cap/pocket-news",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
+      // Screenshot of the app's feed (local dev instance).
+      image: "/project-previews/pocket-news.webp",
       video: "",
     },
     {
