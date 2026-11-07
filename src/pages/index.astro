@@ -9,3 +9,43 @@ export const prerender = true;
 <Layout>
   <HomePage />
 </Layout>
+
+<script>
+  // Runs on every page load, including after Astro's page transitions swap the page in
+  // (a plain module script would only run on the first visit).
+  let observer: IntersectionObserver | undefined;
+
+  function setUpHomePage() {
+    observer?.disconnect();
+
+    // Pop in a card's tech logos while it sits in the middle of the screen; hide them again once it leaves,
+    // so they replay on the way back. Without JS (or with reduced motion) the logos simply stay visible.
+    const targets = document.querySelectorAll(".project-card, .work-entry");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (targets.length && "IntersectionObserver" in window && !reducedMotion) {
+      document.documentElement.classList.add("tech-reveal");
+      observer = new IntersectionObserver(
+        (entries) => entries.forEach((entry) => entry.target.toggleAttribute("data-in-view", entry.isIntersecting)),
+        { rootMargin: "-20% 0px -20% 0px" },
+      );
+      targets.forEach((target) => observer!.observe(target));
+    }
+
+    // Project videos have no controls: clicking (or Enter/Space) plays or pauses them.
+    document.querySelectorAll<HTMLButtonElement>("[data-video-toggle]").forEach((button) => {
+      const video = button.querySelector("video");
+      if (!video) return;
+      const label = button.getAttribute("aria-label") ?? "";
+      const sync = () => {
+        button.toggleAttribute("data-playing", !video.paused);
+        button.setAttribute("aria-label", video.paused ? label : label.replace(/^Play/, "Pause"));
+      };
+      button.addEventListener("click", () => (video.paused ? video.play().catch(() => {}) : video.pause()));
+      video.addEventListener("play", sync);
+      video.addEventListener("pause", sync);
+      video.addEventListener("ended", sync);
+    });
+  }
+
+  document.addEventListener("astro:page-load", setUpHomePage);
+</script>

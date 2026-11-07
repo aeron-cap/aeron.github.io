@@ -5,6 +5,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { SectionAudio } from "@/lib/section-audio";
 
 const LABEL_IDLE_MS = 1400;
+// The whole rail fades out after this long without scrolling.
+const RAIL_IDLE_MS = 2500;
 const MINOR_LINES_PER_SECTION = 6;
 const DETENTS_PER_SECTION = MINOR_LINES_PER_SECTION + 1;
 const minorSteps = Array.from({ length: MINOR_LINES_PER_SECTION }, (_, index) => index + 1);
@@ -24,6 +26,7 @@ const sectionLabels: Record<string, string> = {
   skills: "Languages",
   tools: "Tools",
   projects: "Projects",
+  opensource: "Open Source",
   education: "Education",
   hackathons: "Hackathons",
   photos: "Photos",
@@ -50,6 +53,14 @@ export default function Navbar({ pathname }: { pathname: string }) {
   const [soundPending, setSoundPending] = useState(false);
   const audio = useRef<SectionAudio | null>(null);
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [railIdle, setRailIdle] = useState(false);
+  const railTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function wakeRail() {
+    setRailIdle(false);
+    if (railTimer.current) clearTimeout(railTimer.current);
+    railTimer.current = setTimeout(() => setRailIdle(true), RAIL_IDLE_MS);
+  }
   const selection = useRef<{ id: string; expires: number } | null>(null);
 
   function revealLabels() {
@@ -89,6 +100,7 @@ export default function Navbar({ pathname }: { pathname: string }) {
   useEffect(() => {
     if (!isHome) return;
     revealLabels();
+    wakeRail();
 
     let frame = 0;
     let scrollChanged = false;
@@ -155,6 +167,7 @@ export default function Navbar({ pathname }: { pathname: string }) {
     function onScroll() {
       scrollChanged = true;
       revealLabels();
+      wakeRail();
       schedule();
     }
 
@@ -194,6 +207,7 @@ export default function Navbar({ pathname }: { pathname: string }) {
     return () => {
       if (frame) cancelAnimationFrame(frame);
       if (idleTimer.current) clearTimeout(idleTimer.current);
+      if (railTimer.current) clearTimeout(railTimer.current);
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", schedule);
@@ -246,7 +260,7 @@ export default function Navbar({ pathname }: { pathname: string }) {
         <span>Sound {soundEnabled ? "on" : "off"}</span>
       </button>
       {isHome && (
-        <nav className="section-rail" aria-label="Home sections" data-expanded={labelsVisible} data-ready={ready} style={{ "--rail-minor-lines": MINOR_LINES_PER_SECTION } as CSSProperties}>
+        <nav className="section-rail" aria-label="Home sections" data-expanded={labelsVisible} data-ready={ready} data-idle={railIdle} style={{ "--rail-minor-lines": MINOR_LINES_PER_SECTION } as CSSProperties}>
           <ol className="section-rail-list">
             {homeSections.map((section, index) => (
               <li key={section.id}>

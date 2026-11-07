@@ -6,10 +6,12 @@ import HackathonsSection from "@/components/section/hackathons-section";
 import PhotosSection from "@/components/section/photos-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const sectionComponents: Record<string, ReactNode> = {
   about: <div className="prose prose-sm max-w-none text-muted-foreground dark:prose-invert"><Markdown>{DATA.summary}</Markdown></div>,
+  projects: <ProjectsSection kind="project" text={DATA.sections.projects.text} />,
+  opensource: <ProjectsSection kind="contribution" text={DATA.sections.opensource.text} />,
   work: <WorkSection />,
   education: (
     <div className="experience-list">
@@ -20,9 +22,6 @@ const sectionComponents: Record<string, ReactNode> = {
             <span className="entry-date">{education.start} — {education.end}</span>
           </div>
           <p className="entry-subtitle">{education.degree}</p>
-          <a className="text-link mt-3" href={education.href} target="_blank" rel="noopener noreferrer">
-            University <ArrowUpRight size={13} aria-hidden="true" />
-          </a>
         </article>
       ))}
     </div>
@@ -37,7 +36,6 @@ const sectionComponents: Record<string, ReactNode> = {
       {DATA.tools.map((tool) => <li key={tool.name} className="skill-tag">{tool.name}</li>)}
     </ul>
   ),
-  projects: <ProjectsSection />,
   hackathons: <HackathonsSection />,
   photos: <PhotosSection />,
   contact: <ContactSection />,
@@ -60,7 +58,7 @@ export default function HomePage() {
       <section id="hero" className="hero" aria-labelledby="intro-heading" tabIndex={-1}>
         <div className="hero-intro">
           <div>
-            <p className="eyebrow">Personal portfolio / Fullstack developer</p>
+            <p className="eyebrow">Full-stack developer · Backend &amp; DevOps</p>
             <div className="hero-title">
               <h1 id="intro-heading">{DATA.name}<span className="text-primary">.</span></h1>
               <div className="hero-photo">
@@ -70,24 +68,11 @@ export default function HomePage() {
             <p className="hero-description">{DATA.description}</p>
           </div>
         </div>
-        <div className="hero-actions">
-          <a href="/cv" className="amb-button action-link action-primary">View Resume <ArrowUpRight size={14} aria-hidden="true" /></a>
-          {DATA.sections.projects.enabled && <a href="#projects" className="amb-button action-link">Explore projects <ArrowDown size={14} aria-hidden="true" /></a>}
-        </div>
-        <dl className="profile-strip amb-panel">
-          <div>
-            <dt className="eyebrow">Status</dt>
-            <dd className="work-status">
-              {/*{DATA.openToWork && <span className="work-status-indicator" aria-hidden="true" />}*/}
-              {DATA.workStatus}
-            </dd>
-          </div>
-          <div><dt className="eyebrow">Based in</dt><dd>{DATA.location}</dd></div>
-          <div><dt className="eyebrow">Timezone</dt><dd>{DATA.timezone}</dd></div>
-          <div><dt className="eyebrow">Interests</dt><dd>Backend systems &amp; DevOps</dd></div>
-          <div><dt className="eyebrow">Currently Working On</dt><dd>News Aggregator</dd></div>
-          {/*<div><dt className="eyebrow">Elsewhere</dt><dd><a className="text-link" href={DATA.contact.social.GitHub.url} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={12} aria-hidden="true" /></a></dd></div>*/}
-        </dl>
+        <p className="hero-status">
+          <span>{DATA.workStatus}</span>
+          <span>{DATA.location} ({DATA.timezone})</span>
+          <span>Now building: {DATA.currentlyBuilding}</span>
+        </p>
         <nav className="section-index" aria-label="On this page">
           {orderedSections.map(([key, section]) => <a key={key} href={`#${key}`}>{section.heading || key}</a>)}
         </nav>

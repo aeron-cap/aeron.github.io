@@ -55,58 +55,66 @@ export const DATA = {
   openToWork: true,
   initials: "",
   url: "https://aeron.is-a.dev",
-  location: "Batangas, PH",
+  location: "Philippines",
   locationLink: "",
   timezone: "GMT+8",
   description:
-    "A full-stack developer from the Philippines, focused on backend systems, database performance, and DevOps.",
+    "Full-stack developer from the Philippines with 2+ years of professional experience, focused on backend systems, database performance, and DevOps. When existing tools don't fit, I build my own.",
   summary:
-    "A dev more than 2 years of professional experience and 6 years of programming experience. I build things myself if the available ones does not suit my needs. Constantly learning and upskilling everyday. Currently learning Golang and Software Infrastructure.",
+    "A developer with 2+ years of professional experience and 6 years of programming experience. I build things myself when the available ones don't suit my needs. Currently learning Go and software infrastructure.",
+  currentlyBuilding: "News Aggregator",
   avatarUrl: "/picofme.png",
   ogImage: "/og_image.png",
+  // Portfolio order: what I build first, then where I've worked and studied.
   sections: {
-    about: { order: 1, enabled: true, heading: "About" },
-    skills: { order: 2, enabled: true, heading: "Languages I ship with" },
-    tools: {
-      order: 3,
-      enabled: true,
-      heading: "Tools / Toolkits I use in production",
-    },
-    work: {
-      order: 4,
-      enabled: true,
-      heading: "Work Experience",
-      presentLabel: "Present",
-    },
     projects: {
-      order: 5,
+      order: 1,
       enabled: true,
       label: "Project Index",
-      heading: "Projects",
-      text: "Personal projects and open-source contributions.",
+      heading: "Selected Projects",
+      text: "Things I've designed and built end to end.",
     },
-    education: { order: 6, enabled: true, heading: "Education" },
+    opensource: {
+      order: 2,
+      enabled: true,
+      heading: "Open Source",
+      text: "Merged work in other people's codebases.",
+    },
+    work: {
+      order: 3,
+      enabled: true,
+      heading: "Experience",
+      presentLabel: "Present",
+    },
+    education: { order: 4, enabled: true, heading: "Education" },
+    contact: {
+      order: 5,
+      enabled: true,
+      label: "Contact",
+      heading: "Get in Touch",
+      text: "Open to backend and full-stack roles. Reach me on LinkedIn, email, or Discord.",
+    },
+    about: { order: 90, enabled: false, heading: "About" },
+    skills: { order: 91, enabled: false, heading: "Languages I ship with" },
+    tools: {
+      order: 92,
+      enabled: false,
+      heading: "Tools / Toolkits I use in production",
+    },
     hackathons: {
-      order: 7,
+      order: 93,
       enabled: false,
       label: "Hackathons",
       heading: "I like building things",
       text: "",
     },
     photos: {
-      order: 8,
+      order: 94,
       enabled: false,
       heading: "My Recent Travels",
     },
-    contact: {
-      order: 9,
-      enabled: true,
-      label: "Contact",
-      heading: "Get in Touch",
-      text: "You can contact me through my LinkedIn, Email, or Discord.",
-    },
     cv: {
-      order: 10,
+      order: 95,
       enabled: false,
       label: "CV",
       heading: "Resume",
@@ -207,6 +215,7 @@ export const DATA = {
       end: undefined,
       description:
         "Build and maintain Laravel/Angular SaaS features for 8+ enterprise clients. Improved query performance by up to 95%, cut large Excel exports to under 10 seconds, and lead development for one client.",
+      technologies: ["Laravel", "PHP", "Angular", "TypeScript", "SQL", "Go", "Python", "Playwright", "AWS"],
     },
     {
       company: CV.work[0].company,
@@ -219,6 +228,7 @@ export const DATA = {
       end: "May 2024",
       description:
         "Designed the backend and relational database for an internal billing app, and built a React prototype to kick-start MVP development.",
+      technologies: ["React", "Node.js", "SQL"],
     },
   ],
   projects: [
@@ -229,7 +239,10 @@ export const DATA = {
       active: true,
       description:
         "A self-hosted Go news aggregator with Python NLP scoring, turning RSS and Atom feeds into a daily digest of 5–10 relevant articles.",
-      technologies: ["Go", "Python", "SQLite", "gofeed", "WordNet"],
+      technologies: ["Go", "Python", "SQLite"],
+      kind: "project",
+      featured: true,
+      cover: { flow: true, steps: ["RSS / Atom", "Go workers", "NLP scoring", "Daily digest"] },
       links: [
         {
           type: "Source",
@@ -247,7 +260,9 @@ export const DATA = {
       active: true,
       description:
         "A local AI assistant running a 3B model within 8 GB RAM, with persistent memory and sandboxed tools built in Go.",
-      technologies: ["Go", "SQLite", "Linux", "LLM tool calling"],
+      technologies: ["Go", "SQLite", "Linux"],
+      kind: "project",
+      cover: { flow: false, steps: ["3B model", "8 GB RAM", "Sandboxed tools"] },
       links: [],
       image: "",
       video: "",
@@ -260,6 +275,7 @@ export const DATA = {
       description:
         "A Go system-information display inspired by fastfetch, with a boids simulation.",
       technologies: ["Go"],
+      kind: "project",
       links: [
         {
           type: "Source",
@@ -294,7 +310,8 @@ export const DATA = {
       active: true,
       description:
         "Contributed a sortable resources page to BetterGov PH’s SALN Tracker, delivered through a reviewed and merged 28-file pull request.",
-      technologies: ["React", "TypeScript", "JSON"],
+      technologies: ["React", "TypeScript"],
+      kind: "contribution",
       links: [
         {
           type: "Website",
@@ -307,17 +324,19 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
-      video: "/project-previews/Saln-tracker.mp4",
+      // First screen of the resources page I built (saln.bettergov.ph/resources).
+      image: "/project-previews/saln-tracker.png",
+      video: "",
     },
     {
-      title: CV.contributions[1].title,
+      title: "Hibi",
       href: "",
       dates: CV.contributions[1].dates,
       active: true,
       description:
         "Windows maintainer for Hibi, a cross-platform note taking application built with Electron. Authored a number of merged PRs and currently maintaining through fixes and features.",
-      technologies: ["Electron", "TypeScript", "Git", "Windows"],
+      technologies: ["Electron", "TypeScript"],
+      kind: "contribution",
       links: [
         {
           type: "Website",
@@ -330,7 +349,8 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
+      // Hibi's official link-preview image, from hibi.garden.
+      image: "/project-previews/hibi.png",
       video: "",
     },
   ],

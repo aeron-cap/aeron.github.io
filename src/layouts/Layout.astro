@@ -4,6 +4,7 @@ import { DATA } from "@/data/resume";
 import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
 import TopographyBackdrop from "@/components/TopographyBackdrop.astro";
+import { ClientRouter, fade } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -35,29 +36,39 @@ const { baseFontSize } = CONFIG.typography;
 <html
   lang={CONFIG.site.locale.split("_")[0]}
   style={`font-size: ${baseFontSize}%;`}
+  transition:animate={fade({ duration: "0.5s" })}
 >
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- FOUC prevention: apply stored theme before first paint -->
+    <!-- FOUC prevention: apply stored theme before first paint, and again on every Astro page swap
+         (the incoming page's <html> doesn't carry the theme class, so it would flash light). -->
     <script is:inline>
       (function () {
-        try {
-          var theme = localStorage.getItem("theme");
-          if (
-            theme === "dark" ||
-            ((!theme || theme === "system") &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
-          ) {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
-        } catch (_) {}
+        function applyTheme(doc) {
+          try {
+            var theme = localStorage.getItem("theme");
+            var dark =
+              theme === "dark" ||
+              ((!theme || theme === "system") &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches);
+            doc.documentElement.classList.toggle("dark", dark);
+          } catch (_) {}
+        }
+        applyTheme(document);
+        if (!window.__themeSwapHook) {
+          window.__themeSwapHook = true;
+          document.addEventListener("astro:before-swap", function (event) {
+            applyTheme(event.newDocument);
+          });
+        }
       })();
     </script>
+
+    <!-- Astro's native page transitions: pages cross-fade instead of hard-loading. -->
+    <ClientRouter />
 
     <!-- Theme variables from config.ts -->
     <style
