@@ -118,17 +118,21 @@ export default function Navbar({ pathname }: { pathname: string }) {
       previousY = y;
       const sections = homeSections.flatMap((section) => {
         const element = document.getElementById(section.id);
-        return element ? [{ ...section, top: element.getBoundingClientRect().top + y }] : [];
+        // Skip sections a layout hides (display: none reports top 0 and would always count as "current").
+        return element && element.getClientRects().length ? [{ ...section, top: element.getBoundingClientRect().top + y }] : [];
       });
       if (!sections.length) return;
 
-      const probe = y + window.innerHeight * 0.3;
+      // The reading line starts 30% down the screen and slides to the bottom edge as the page ends,
+      // so short final sections are still reached smoothly instead of snapping at the last pixel.
+      const pageEnd = document.documentElement.scrollHeight - window.innerHeight;
+      const pageProgress = pageEnd > 0 ? Math.min(1, Math.max(0, y / pageEnd)) : 1;
+      const probe = y + window.innerHeight * (0.3 + 0.7 * pageProgress);
       let index = 0;
       for (let candidate = 1; candidate < sections.length; candidate++) {
         if (sections[candidate].top <= probe) index = candidate;
       }
-      // The final section must remain reachable even if it's shorter than the viewport.
-      const pageEnd = document.documentElement.scrollHeight - window.innerHeight;
+      // Safety net: the final section must remain reachable even if it's shorter than the viewport.
       if (pageEnd > 0 && y >= pageEnd - 2) index = sections.length - 1;
 
       // Native anchor scrolling may clamp near the footer. Keep the selected

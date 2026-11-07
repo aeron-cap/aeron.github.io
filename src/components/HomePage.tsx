@@ -73,6 +73,16 @@ export default function HomePage() {
           <span>{DATA.location} ({DATA.timezone})</span>
           <span>Now building: {DATA.currentlyBuilding}</span>
         </p>
+        {/* Contact links for layouts that keep the intro pinned on screen (hidden unless layout.css shows them). */}
+        <ul className="hero-links" aria-label="Contact">
+          {Object.values(DATA.contact.social).filter((social) => social.navbar).map((social) => (
+            <li key={social.name}>
+              <a className="text-link" href={social.url} {...(social.url.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}>
+                {social.name === "Send Email" ? "Email" : social.name} <ArrowUpRight size={12} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
         <nav className="section-index" aria-label="On this page">
           {orderedSections.map(([key, section]) => <a key={key} href={`#${key}`}>{section.heading || key}</a>)}
         </nav>

@@ -1,0 +1,95 @@
+/* Layout H · Centered intro.
+   Desktop: the intro (name, one-liner, status, contacts) sits vertically centered on the left and the work
+   scrolls in a column on the right. Spacing is symmetric: the intro, logo and sound toggle start one gutter
+   from the left edge, exactly as the work column, nav and theme toggle end one gutter from the right edge.
+   The section rail lives in the left gutter only, as compact lines (names on hover), so it never affects
+   that spacing. Everything shares the topography background; nothing divides the page.
+   Below 1100px wide (or on short screens) the page falls back to the standard stacked layout. */
+.hero-links { display: none; }
+
+@media (min-width: 1100px) and (min-height: 620px) {
+  .home-layout {
+    --gutter: clamp(3.5rem, 6vw, 6.5rem);
+    --gap: clamp(3rem, 6vw, 7rem);
+    --intro-width: min(24rem, 28vw);
+  }
+
+  /* Work column: ends one gutter from the right edge (100% = page width, excluding the scrollbar) */
+  .home-layout .site-width {
+    width: min(48rem, calc(100% - var(--gutter) * 2 - var(--intro-width) - var(--gap)));
+    margin-left: auto;
+    margin-right: var(--gutter);
+  }
+  .home-layout .site-content { padding-block: 7rem 6rem; }
+
+  /* Top bar: logo one gutter from the left, nav one gutter from the right */
+  .home-layout .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    width: auto;
+    margin: 0;
+    padding: 1.25rem var(--gutter) 2.5rem;
+    background: linear-gradient(var(--background) 45%, transparent);
+  }
+  .home-layout::after {
+    content: "";
+    position: fixed;
+    inset: auto 0 0 0;
+    height: 5rem;
+    background: linear-gradient(transparent, var(--background));
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  /* The intro: one gutter from the left, vertically centered */
+  .home-layout .hero {
+    position: fixed;
+    inset-block: 0;
+    left: var(--gutter);
+    width: var(--intro-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    z-index: 20;
+  }
+  .home-layout .hero h1 { font-size: clamp(2.25rem, 3.2vw, 3rem); line-height: 1.04; margin-block: .75rem 1rem; }
+  .home-layout .hero-description { font-size: .9375rem; }
+  .home-layout .hero-status { margin-top: 1.25rem; }
+  .home-layout .hero-links { display: flex; flex-wrap: wrap; gap: .5rem 1.125rem; margin-top: 1rem; padding: 0; list-style: none; }
+
+  /* Sections: label above, content full width */
+  .home-layout .info-section { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .home-layout .section-label { flex-direction: row; align-items: baseline; gap: .75rem; }
+  .home-layout .hero + .info-section { border-top: 0; padding-top: 0; }
+
+  /* Contacts live in the intro, so the contact section is redundant */
+  .home-layout #contact { display: none; }
+  /* Sound toggle lines up with the intro and logo */
+  .home-layout .sound-toggle { left: var(--gutter); bottom: clamp(1.5rem, 4vh, 2.25rem); z-index: 41; }
+
+  /* Section rail: compact lines centered in the left gutter only. Names appear on hover/focus as a
+     small chip, so the rail never pushes or overlaps the intro's spacing. */
+  .home-layout .section-rail {
+    left: calc((var(--gutter) - 1.75rem) / 2);
+    width: 1.75rem;
+    z-index: 21;
+  }
+  .home-layout .section-rail-list { max-height: none; overflow: visible; }
+  .home-layout .section-rail .section-rail-label {
+    opacity: 0;
+    transform: translateX(-.25rem);
+    pointer-events: none;
+    padding: .125rem .45rem;
+    border: 1px solid var(--border);
+    border-radius: .25rem;
+    background: var(--card);
+  }
+  .home-layout .section-rail-link:hover .section-rail-label,
+  .home-layout .section-rail-link:focus-visible .section-rail-label { opacity: 1; transform: none; }
+  /* Intro and contacts are always on screen here, so they don't need entries */
+  .home-layout .section-rail-list > li:has(> a[href="#hero"]),
+  .home-layout .section-rail-list > li:has(> a[href="#contact"]) { display: none; }
+  .home-layout .section-rail-list > li:has(+ li > a[href="#contact"]) .section-rail-detents { display: none; }
+}
