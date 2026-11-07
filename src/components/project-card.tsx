@@ -12,6 +12,8 @@ interface Props {
   tags: readonly string[];
   image?: string;
   video?: string;
+  /** Heavy animated image (e.g. a GIF). `image` is shown as its still poster; the animation loads on click. */
+  animation?: string;
   cover?: { flow: boolean; steps: readonly string[] };
   featured?: boolean;
   links?: readonly {
@@ -22,7 +24,7 @@ interface Props {
   className?: string;
 }
 
-export function ProjectCard({ title, href, description, dates, tags, image, video, cover, featured, links, className }: Props) {
+export function ProjectCard({ title, href, description, dates, tags, image, video, animation, cover, featured, links, className }: Props) {
   return (
     <article className={cn("project-card amb-sheet", featured && "project-card-featured", className)}>
       <div className="project-media">
@@ -32,8 +34,14 @@ export function ProjectCard({ title, href, description, dates, tags, image, vide
             <video src={video} muted playsInline preload="metadata" />
             <span className="project-video-play" aria-hidden="true"><Play size={18} fill="currentColor" /></span>
           </button>
+        ) : animation && image ? (
+          // Still poster first; clicking loads and plays the animation, clicking again returns to the poster.
+          <button type="button" className="project-video" data-animation-toggle data-animation={animation} aria-label={`Play ${title} demo`}>
+            <img src={image} alt={`${title} preview`} loading="lazy" decoding="async" />
+            <span className="project-video-play" aria-hidden="true"><Play size={18} fill="currentColor" /></span>
+          </button>
         ) : image ? (
-          <img src={image} alt={`${title} preview`} loading="lazy" />
+          <img src={image} alt={`${title} preview`} loading="lazy" decoding="async" />
         ) : (
           <ProjectCover title={title} steps={cover?.steps ?? tags} flow={cover?.flow} />
         )}

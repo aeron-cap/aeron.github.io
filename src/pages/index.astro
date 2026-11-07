@@ -45,6 +45,35 @@ export const prerender = true;
       video.addEventListener("pause", sync);
       video.addEventListener("ended", sync);
     });
+
+    // Heavy animated previews (GIFs) start as a still poster. Clicking downloads the animation and
+    // swaps it in once it's ready; clicking again goes back to the poster.
+    document.querySelectorAll<HTMLButtonElement>("[data-animation-toggle]").forEach((button) => {
+      const img = button.querySelector("img");
+      const animation = button.dataset.animation;
+      if (!img || !animation) return;
+      const poster = img.src;
+      const label = button.getAttribute("aria-label") ?? "";
+      button.addEventListener("click", () => {
+        if (button.hasAttribute("data-playing") || button.hasAttribute("data-loading")) {
+          button.removeAttribute("data-playing");
+          button.removeAttribute("data-loading");
+          img.src = poster;
+          button.setAttribute("aria-label", label);
+          return;
+        }
+        button.setAttribute("data-loading", "");
+        const full = new Image();
+        full.src = animation;
+        full.decode().catch(() => {}).then(() => {
+          if (!button.hasAttribute("data-loading")) return; // cancelled while loading
+          button.removeAttribute("data-loading");
+          button.setAttribute("data-playing", "");
+          img.src = animation;
+          button.setAttribute("aria-label", label.replace(/^Play/, "Pause"));
+        });
+      });
+    });
   }
 
   document.addEventListener("astro:page-load", setUpHomePage);

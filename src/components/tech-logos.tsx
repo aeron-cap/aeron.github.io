@@ -23,8 +23,9 @@ import { Typescript } from "@/components/ui/svgs/typescript";
 type Logo = ComponentType<SVGProps<SVGSVGElement>>;
 
 // Brand logos for the main languages, frameworks and tools. Libraries don't belong here.
-const LOGOS: Record<string, Logo> = {
-  Go: (props) => <Golang {...props} style={{ color: "#00ADD8" }} />,
+// Colours that depend on the theme (Go's blue, the AWS wordmark) are set in CSS via data-name.
+export const LOGOS: Record<string, Logo> = {
+  Go: Golang,
   TypeScript: Typescript,
   JavaScript: JavaScript,
   Python: Python,
@@ -46,17 +47,28 @@ const LOGOS: Record<string, Logo> = {
   AWS: AWS,
 };
 
+/** Symbol id for a logo in /tech-logos.svg, e.g. "Node.js" -> "node-js".
+ *  "+" and "#" are spelled out so "C", "C++" and "C#" don't all collapse to "c". */
+export const logoId = (name: string) =>
+  name.toLowerCase().replace(/\+/g, "plus").replace(/#/g, "sharp").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+/** Published path of the logo sprite (built by src/pages/tech-logos.svg.ts). */
+export const LOGO_SPRITE = "/tech-logos.svg";
+
+// Each logo is drawn from one shared, cached sprite file instead of being inlined in the page,
+// so a logo used in several cards costs its SVG once.
 export function TechLogos({ items, label }: { items: readonly string[]; label: string }) {
   return (
     <ul className="tech-logos" aria-label={label}>
-      {items.map((name, index) => {
-        const Logo = LOGOS[name];
-        return (
-          <li key={name} className="tech-logo" data-name={name} tabIndex={0} aria-label={name} style={{ "--i": index } as CSSProperties}>
-            {Logo ? <Logo aria-hidden="true" /> : <span className="tech-logo-text" aria-hidden="true">{name}</span>}
-          </li>
-        );
-      })}
+      {items.map((name, index) => (
+        <li key={name} className="tech-logo" data-name={name} tabIndex={0} aria-label={name} style={{ "--i": index } as CSSProperties}>
+          {LOGOS[name] ? (
+            <svg aria-hidden="true"><use href={`${LOGO_SPRITE}#${logoId(name)}`} /></svg>
+          ) : (
+            <span className="tech-logo-text" aria-hidden="true">{name}</span>
+          )}
+        </li>
+      ))}
     </ul>
   );
 }

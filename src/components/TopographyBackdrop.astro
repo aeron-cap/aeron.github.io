@@ -1,4 +1,5 @@
-<topography-backdrop aria-hidden="true">
+<!-- Persisted across Astro page transitions so the WebGL fields aren't rebuilt on every navigation. -->
+<topography-backdrop aria-hidden="true" transition:persist="topography">
   <div class="topography-cursor" data-field="cursor"></div>
   <div class="topography-edge topography-top" data-field="top"></div>
   <div class="topography-edge topography-bottom" data-field="bottom"></div>
@@ -7,15 +8,30 @@
 <script>
   import { TopoField } from "topolines";
 
+  // Building a field (WebGL context + shader compile) blocks the main thread for hundreds of ms, so
+  // fields are not built during page load. Each one is built in its own idle slot after the intro has
+  // played, when the visitor is least likely to be interacting (never in the middle of a scroll).
+  // Desktop also builds early on the first mouse move, since its field only shows around the cursor.
+  const INTRO_SETTLE_MS = 2600;
+  const whenIdle = (callback: () => void) =>
+    "requestIdleCallback" in window ? window.requestIdleCallback(callback, { timeout: 2000 }) : setTimeout(callback, 200);
+
   class TopographyBackdrop extends HTMLElement {
-    private fields: TopoField[] = [];
+    private fields = new Map<HTMLElement, TopoField>();
     private desktop = window.matchMedia("(min-width: 769px) and (hover: hover) and (pointer: fine)");
     private motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     private themeObserver?: MutationObserver;
+    private introTimer?: ReturnType<typeof setTimeout>;
+    private pauseTimer?: ReturnType<typeof setTimeout>;
+    private generation = 0;
+    private wired = false;
 
     connectedCallback() {
+      // Astro's page transitions move this persisted element (disconnect + reconnect); keep its fields.
+      if (this.wired) return;
+      this.wired = true;
       this.desktop.addEventListener("change", this.mountFields);
-      this.motion.addEventListener("change", this.updateTheme);
+      this.motion.addEventListener("change", this.mountFields);
       this.themeObserver = new MutationObserver(this.updateTheme);
       this.themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
       window.addEventListener("pointermove", this.followPointer, { passive: true });
@@ -25,38 +41,76 @@
     }
 
     disconnectedCallback() {
+      // Only tear down if the element is really gone, not just being moved by a page transition.
+      requestAnimationFrame(() => {
+        if (this.isConnected) return;
+        this.wired = false;
+        this.clearFields();
+        this.themeObserver?.disconnect();
+        this.desktop.removeEventListener("change", this.mountFields);
+        this.motion.removeEventListener("change", this.mountFields);
+        window.removeEventListener("pointermove", this.followPointer);
+        window.removeEventListener("blur", this.hidePointer);
+        document.documentElement.removeEventListener("pointerleave", this.hidePointer);
+      });
+    }
+
+    private clearFields() {
       this.fields.forEach((field) => field.destroy());
-      this.fields = [];
-      this.themeObserver?.disconnect();
-      this.desktop.removeEventListener("change", this.mountFields);
-      this.motion.removeEventListener("change", this.updateTheme);
-      window.removeEventListener("pointermove", this.followPointer);
-      window.removeEventListener("blur", this.hidePointer);
-      document.documentElement.removeEventListener("pointerleave", this.hidePointer);
+      this.fields.clear();
+      clearTimeout(this.introTimer);
     }
 
     private mountFields = () => {
-      this.fields.forEach((field) => field.destroy());
-      this.fields = [];
+      this.clearFields();
       this.removeAttribute("data-active");
-      const selector = this.desktop.matches ? '[data-field="cursor"]' : '.topography-edge';
-      this.querySelectorAll<HTMLElement>(selector).forEach((host) => {
-        this.fields.push(new TopoField(host, {
-          seed: `aeron-terrain-${host.dataset.field}`,
-          scale: this.desktop.matches ? 2.6 : 1.8,
-          levels: 14,
-          lineWidth: 1,
-          warp: .24,
-          speed: this.desktop.matches ? .002 : .006,
-          drift: [.012, .006],
-          maxDpr: 1,
-          interactive: this.desktop.matches && !this.motion.matches,
-          mouseStrength: .24,
-          mouseRadius: .26,
-        }));
-      });
-      this.updateTheme();
+      // One field per idle slot, so no single slot does more than one build.
+      // (Off-screen fields pause themselves, so building the bottom edge early costs nothing later.)
+      const queue = this.desktop.matches ? ["cursor"] : ["top", "bottom"];
+      const generation = ++this.generation; // a newer mount (e.g. desktop <-> touch switch) cancels this queue
+      const buildNext = () => {
+        const next = queue.shift();
+        if (!next || generation !== this.generation) return;
+        this.createField(this.host(next));
+        whenIdle(buildNext);
+      };
+      this.introTimer = setTimeout(() => whenIdle(buildNext), INTRO_SETTLE_MS);
     };
+
+    private host(name: string) {
+      return this.querySelector<HTMLElement>(`[data-field="${name}"]`)!;
+    }
+
+    private createField(host: HTMLElement) {
+      if (!this.wired || this.fields.has(host)) return;
+      this.fields.set(host, new TopoField(host, {
+        seed: `aeron-terrain-${host.dataset.field}`,
+        scale: this.desktop.matches ? 2.6 : 1.8,
+        levels: 14,
+        lineWidth: 1,
+        warp: .24,
+        speed: this.desktop.matches ? .002 : .006,
+        drift: [.012, .006],
+        maxDpr: 1,
+        interactive: this.desktop.matches && !this.motion.matches,
+        mouseStrength: .24,
+        mouseRadius: .26,
+      }));
+      this.updateTheme();
+      // The desktop field is invisible until the cursor is over the page, so don't animate it until then.
+      // (Paused just after the library's own visibility observer has made its first call, which starts it.)
+      if (this.cursorMode()) {
+        clearTimeout(this.pauseTimer);
+        this.pauseTimer = setTimeout(() => {
+          if (!this.hasAttribute("data-active")) this.fields.forEach((field) => field.pause());
+        }, 150);
+      }
+    }
+
+    /** Desktop with motion allowed: the field only shows (and animates) around the cursor. */
+    private cursorMode() {
+      return this.desktop.matches && !this.motion.matches;
+    }
 
     private updateTheme = () => {
       const color = getComputedStyle(this).getPropertyValue("--topography-color").trim();
@@ -72,13 +126,21 @@
       if (!this.desktop.matches || event.pointerType === "touch") return;
       // Reduced motion keeps the desktop map still, with a broad static fade.
       if (this.motion.matches) return;
+      if (!this.fields.size) this.createField(this.host("cursor"));
       this.style.setProperty("--pointer-x", `${event.clientX}px`);
       this.style.setProperty("--pointer-y", `${event.clientY}px`);
-      this.setAttribute("data-active", "true");
+      clearTimeout(this.pauseTimer);
+      if (!this.hasAttribute("data-active")) {
+        this.setAttribute("data-active", "true");
+        this.fields.forEach((field) => field.play());
+      }
     };
 
     private hidePointer = () => {
       this.removeAttribute("data-active");
+      // Pause once the reveal has faded out (500ms in the CSS), so an unseen field costs nothing.
+      clearTimeout(this.pauseTimer);
+      if (this.cursorMode()) this.pauseTimer = setTimeout(() => this.fields.forEach((field) => field.pause()), 600);
     };
   }
 
@@ -105,6 +167,10 @@
   }
 
   .topography-cursor { display: none; }
+
+  /* Fields are created after load, so let each one fade in rather than pop. */
+  topography-backdrop :global(canvas) { animation: topography-in 1.2s ease-out both; }
+  @keyframes topography-in { from { opacity: 0; } }
 
   .topography-edge {
     position: absolute;
@@ -144,6 +210,7 @@
       transition: none;
       mask-image: linear-gradient(to bottom, #000, transparent 65%);
     }
+    topography-backdrop :global(canvas) { animation: none; }
   }
 
   @media print {

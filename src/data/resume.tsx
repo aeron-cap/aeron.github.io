@@ -63,7 +63,7 @@ export const DATA = {
   summary:
     "A developer with 2+ years of professional experience and 6 years of programming experience. I build things myself when the available ones don't suit my needs. Currently learning Go and software infrastructure.",
   currentlyBuilding: "News Aggregator",
-  avatarUrl: "/picofme.png",
+  avatarUrl: "/picofme.webp",
   ogImage: "/og_image.png",
   // Portfolio order: what I build first, then where I've worked and studied.
   sections: {
@@ -283,7 +283,9 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/project-previews/boids-sim.gif",
+      // Poster still; the full GIF (6 MB) only loads when someone clicks to play it.
+      image: "/project-previews/boidfetch-poster.webp",
+      animation: "/project-previews/boids-sim.gif",
       video: "",
     },
     // {
@@ -325,7 +327,7 @@ export const DATA = {
         },
       ],
       // First screen of the resources page I built (saln.bettergov.ph/resources).
-      image: "/project-previews/saln-tracker.png",
+      image: "/project-previews/saln-tracker.webp",
       video: "",
     },
     {
@@ -350,7 +352,7 @@ export const DATA = {
         },
       ],
       // Hibi's official link-preview image, from hibi.garden.
-      image: "/project-previews/hibi.png",
+      image: "/project-previews/hibi.webp",
       video: "",
     },
   ],

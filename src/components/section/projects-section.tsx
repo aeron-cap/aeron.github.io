@@ -18,6 +18,7 @@ export default function ProjectsSection({ kind, text }: { kind: "project" | "con
             tags={project.technologies}
             image={project.image}
             video={project.video}
+            animation={"animation" in project ? project.animation : undefined}
             cover={"cover" in project ? project.cover : undefined}
             featured={"featured" in project && project.featured}
             links={project.links}
