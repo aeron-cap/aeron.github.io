@@ -244,6 +244,11 @@ export const DATA = {
       featured: true,
       links: [
         {
+          type: "Website",
+          href: "https://pocketnews.space",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
           type: "Source",
           href: "https://github.com/aeron-cap/pocket-news",
           icon: <Icons.github className="size-3" />,

@@ -64,7 +64,7 @@
 - Designed initial backend architecture and relational database design for an internal billing web application; developed a high-fidelity mockup and functional prototype using React, which spearheaded the MVP to development.
 
 #section("PROJECTS")
-#row([POCKET NEWS | #link("https://github.com/aeron-cap/pocket-news", "github.com/aeron-cap/pocket-news")], "Ongoing", bold: true)
+#row([POCKET NEWS | #link("https://pocketnews.space", "pocketnews.space")], "Ongoing", bold: true)
 - Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL, shipped via GitHub Actions CI/CD to AWS.
 - Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).
 
