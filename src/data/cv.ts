@@ -23,10 +23,9 @@ export const CV = {
           title: "Junior Full Stack Developer",
           dates: "Sept 2024 – Present",
           highlights: [
-            "Optimized backend database operations by refactoring join-heavy queries and eliminating n+1 bottlenecks, achieving up to 95% performance improvements and reducing dashboard and report load times on datasets exceeding 300,000 rows.",
-            "Designed an asynchronous Excel export pipeline using Laravel queues and a compiled Go export worker, preventing request failures and reducing generation time for exports containing up to 8 million cells from over two minutes to under 10 seconds.",
-            "Maintained ownership of full-stack SaaS features across accounting and inventory management domains using Laravel and Angular, adapting the system to support diverse and evolving business processes of 8+ enterprise clients.",
-            "Serve as lead developer for one enterprise client, delivering feature requests, coordinating deployments and uptime, and reviewing pull requests.",
+            "Lead developer for one of 8+ enterprise clients on an accounting and inventory SaaS (Laravel, Angular): own feature delivery, deployments, uptime and pull request reviews, adapting the system to each client's business processes.",
+            "Designed an asynchronous Excel export pipeline using Laravel queues and a compiled Go export worker, cutting generation time for exports of up to 8 million cells from over two minutes to under 10 seconds and eliminating request timeouts.",
+            "Optimized join-heavy queries and eliminated N+1 bottlenecks, improving performance by up to 95% and cutting dashboard and report load times on datasets of 300,000+ rows.",
             "Building a Playwright e2e suite for the web app; writes unit tests for backend changes.",
             "Built Python scripts and internal tools to streamline data processing workflows and automate local database backups.",
           ],
