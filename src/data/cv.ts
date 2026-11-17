@@ -64,7 +64,7 @@ export const CV = {
       role: "Electron/TypeScript",
       dates: "Ongoing | Windows Maintainer",
       highlights: [
-        "Windows maintainer for Hibi, a cross-platform note taking application built with Electron. Authored a number of merged PRs and currently maintaining through fixes and features.",
+        "Windows maintainer for Hibi, a cross-platform Electron note-taking app: 5 merged PRs adding Windows Git Credential Manager support, a git stage-all button, an image viewer and a freeze-preview-pane option, and fixing the preview closing when a file is opened from the explorer.",
       ],
     },
   ],
