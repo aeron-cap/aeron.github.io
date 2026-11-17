@@ -259,20 +259,6 @@ export const DATA = {
       video: "",
     },
     {
-      title: CV.projects[1].title,
-      href: "",
-      dates: CV.projects[1].dates,
-      active: true,
-      description:
-        "A local AI assistant running a 3B model within 8 GB RAM, with persistent memory and sandboxed tools built in Go.",
-      technologies: ["Go", "SQLite", "Linux"],
-      kind: "project",
-      cover: { flow: false, steps: ["3B model", "8 GB RAM", "Sandboxed tools"] },
-      links: [],
-      image: "",
-      video: "",
-    },
-    {
       title: "Boidfetch",
       href: "",
       dates: "Ongoing",

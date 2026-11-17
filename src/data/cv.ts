@@ -49,14 +49,6 @@ export const CV = {
         "Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).",
       ],
     },
-    {
-      title: "Local AI Assistant",
-      dates: "Ongoing",
-      highlights: [
-        "Tuned inference to run a 3B model within an 8 GB RAM budget on bare-metal Linux (constraint-aware design).",
-        "Persistent per-channel conversation memory + a SQLite fact-store (key-based retrieval) for cross-session recall; tool-calling middleware with sandboxed filesystem/shell access written in Go.",
-      ],
-    },
   ],
   contributions: [
     {

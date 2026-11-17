@@ -67,11 +67,6 @@
 - Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL, shipped via GitHub Actions CI/CD to AWS.
 - Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).
 
-#v(8pt)
-#row("LOCAL AI ASSISTANT", "Ongoing", bold: true)
-- Tuned inference to run a 3B model within an 8 GB RAM budget on bare-metal Linux (constraint-aware design).
-- Persistent per-channel conversation memory + a SQLite fact-store (key-based retrieval) for cross-session recall; tool-calling middleware with sandboxed filesystem/shell access written in Go.
-
 #section("OPEN SOURCE CONTRIBUTIONS")
 #block(sticky: true, below: 4pt)[
   *SALN Tracker - BetterGov PH* | React/TypeScript | Contributor
