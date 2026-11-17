@@ -45,7 +45,7 @@
 #section("SKILLS")
 #text(size: 10pt)[
   *Languages & Frameworks:* Go, TypeScript, JavaScript, Python, PHP, SQL | NestJS (Node.js), React, Laravel, Angular \
-  *Infrastructure & Tools:* Docker, Linux, Git, CI/CD, Nginx, Prometheus, Grafana \
+  *Infrastructure & Tools:* GitHub Actions, AWS (EC2, IAM/OIDC, SSM), Nginx, systemd, Linux, Docker, Prometheus, Grafana \
   *Databases & Practices:* PostgreSQL, MySQL, SQLite, query optimization, unit and e2e testing with Playwright
 ]
 
@@ -64,8 +64,9 @@
 
 #section("PROJECTS")
 #row([POCKET NEWS | #link("https://pocketnews.space", "pocketnews.space")], "Ongoing", bold: true)
-- Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL, shipped via GitHub Actions CI/CD to AWS.
+- Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL.
 - Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).
+- Automated deploys with GitHub Actions to AWS EC2: OIDC-assumed IAM role (no long-lived keys), SSH over SSM Session Manager, versioned releases with health checks and automatic rollback, served by Nginx with TLS and per-IP rate limiting under systemd.
 
 #section("OPEN SOURCE CONTRIBUTIONS")
 #block(sticky: true, below: 4pt)[

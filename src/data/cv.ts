@@ -7,7 +7,7 @@ export const CV = {
     },
     {
       category: "Infrastructure & Tools",
-      items: "Docker, Linux, Git, CI/CD, Nginx, Prometheus, Grafana",
+      items: "GitHub Actions, AWS (EC2, IAM/OIDC, SSM), Nginx, systemd, Linux, Docker, Prometheus, Grafana",
     },
     {
       category: "Databases & Practices",
@@ -45,8 +45,9 @@ export const CV = {
       title: "Pocket News",
       dates: "Ongoing",
       highlights: [
-        "Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL, shipped via GitHub Actions CI/CD to AWS.",
+        "Building a tech-news aggregator with a Go REST API and React/TypeScript front end; goroutines and gofeed concurrently fetch RSS/Atom feeds into PostgreSQL.",
         "Integrated a Python WordNet (Resnik) scoring pipeline that ranks a daily top 5–10 articles; hardened fetching against SSRF (validated URLs, redirects, and DNS answers; 8 s timeouts; 5 MiB cap).",
+        "Automated deploys with GitHub Actions to AWS EC2: OIDC-assumed IAM role (no long-lived keys), SSH over SSM Session Manager, versioned releases with health checks and automatic rollback, served by Nginx with TLS and per-IP rate limiting under systemd.",
       ],
     },
   ],
