@@ -241,7 +241,8 @@ export const DATA = {
         "A Go link aggregator that pulls tech news from multiple sources into one daily reading list, ranked by a Python WordNet scoring pipeline and stored in PostgreSQL. Feed fetching is locked down against SSRF: public URLs only, 8-second timeouts, and a 5 MiB response cap.",
       technologies: ["Go", "Python", "PostgreSQL", "React", "TypeScript", "AWS"],
       kind: "project",
-      featured: true,
+      // Off while there are only two projects, so both cards share a row.
+      featured: false,
       links: [
         {
           type: "Website",
