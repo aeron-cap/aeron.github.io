@@ -33,3 +33,7 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Misc files
+BRAND.md
+CAREER_GOALS.md
