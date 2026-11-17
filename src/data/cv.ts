@@ -11,7 +11,7 @@ export const CV = {
     },
     {
       category: "Databases & Practices",
-      items: "PostgreSQL, MySQL, SQLite, query optimization, unit and e2e testing with Playwright",
+      items: "PostgreSQL, MySQL, SQLite, query optimization, automated testing in CI",
     },
   ],
   work: [
@@ -26,15 +26,14 @@ export const CV = {
             "Lead developer for one of 8+ enterprise clients on an accounting and inventory SaaS (Laravel, Angular): own feature delivery, deployments, uptime and pull request reviews, adapting the system to each client's business processes.",
             "Designed an asynchronous Excel export pipeline using Laravel queues and a compiled Go export worker, cutting generation time for exports of up to 8 million cells from over two minutes to under 10 seconds and eliminating request timeouts.",
             "Optimized join-heavy queries and eliminated N+1 bottlenecks, improving performance by up to 95% and cutting dashboard and report load times on datasets of 300,000+ rows.",
-            "Building a Playwright e2e suite for the web app; writes unit tests for backend changes.",
-            "Built Python scripts and internal tools to streamline data processing workflows and automate local database backups.",
+            "Built Python scripts and internal tools to streamline data processing workflows.",
           ],
         },
         {
           title: "Web Development Intern",
           dates: "Feb 2024 – May 2024",
           highlights: [
-            "Designed initial backend architecture and relational database design for an internal billing web application; developed a high-fidelity mockup and functional prototype using React, which spearheaded the MVP to development.",
+            "Designed the backend architecture and relational database for an internal billing web application, and built a high-fidelity mockup and React prototype that became the starting point for the MVP.",
           ],
         },
       ],
@@ -57,8 +56,7 @@ export const CV = {
       role: "React/TypeScript",
       dates: "Ongoing | Contributor",
       highlights: [
-        "Added a resources page to BetterGov PH’s SALN Tracker - React codebase, integrating structured JSON metadata, sortable resource cards, navigation updates, and static preview assets within the existing design system.",
-        "Delivered the feature through a reviewed and merged open-source pull request spanning 28 files.",
+        "Built the public resources page (saln.bettergov.ph/resources) for BetterGov PH's civic-tech tracker of officials' asset declarations: sortable resource cards driven by structured JSON metadata, within the existing design system (2 merged PRs).",
       ],
     },
     {
@@ -73,8 +71,8 @@ export const CV = {
   education: {
     school: "Batangas State University - Alangilan",
     location: "Batangas City",
-    degree: "BS Computer Engineering",
-    gwa: "1.4",
+    degree: "BS Computer Engineering, Cum Laude",
+    gwa: "1.4 (1.0 highest)",
     year: "2024",
     coursework: "Data Structures & Algorithms, Software Engineering, Operating Systems, Machine Learning",
   },

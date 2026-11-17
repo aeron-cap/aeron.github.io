@@ -2,12 +2,13 @@ import { Icons } from "@/components/icons";
 import {
   Activity,
   ChartNoAxesCombined,
+  Cloud,
+  Cog,
   Database,
   FileText,
   GitBranch,
   House,
   Server,
-  TestTube2,
   Workflow,
 } from "lucide-react";
 import { CV } from "@/data/cv";
@@ -24,7 +25,6 @@ import { CSS3 } from "@/components/ui/svgs/cssLogo";
 import { SQL } from "@/components/ui/svgs/sql";
 import { YAML } from "@/components/ui/svgs/yaml";
 import { Bash } from "@/components/ui/svgs/bash";
-import { Vercel } from "@/components/ui/svgs/vercel";
 import { NetlifyLogo } from "@/components/ui/svgs/netlify";
 import { Laravel } from "@/components/ui/svgs/laravel";
 import { AngularJS } from "@/components/ui/svgs/angularjs";
@@ -99,7 +99,7 @@ export const DATA = {
     tools: {
       order: 92,
       enabled: false,
-      heading: "Tools / Toolkits I use in production",
+      heading: "Tools I work with",
     },
     hackathons: {
       order: 93,
@@ -135,7 +135,6 @@ export const DATA = {
     { name: "Bash", icon: Bash },
   ],
   tools: [
-    { name: "Vercel", icon: Vercel },
     { name: "Netlify", icon: NetlifyLogo },
     { name: "Laravel", icon: Laravel },
     { name: "Node.js", icon: Nodejs },
@@ -150,13 +149,14 @@ export const DATA = {
     { name: "DBeaver", icon: DBeaver },
     { name: "Linux", icon: Linux },
     { name: "Git", icon: GitBranch },
-    { name: "CI/CD", icon: Workflow },
+    { name: "GitHub Actions", icon: Workflow },
+    { name: "AWS", icon: Cloud },
     { name: "Nginx", icon: Server },
+    { name: "systemd", icon: Cog },
     { name: "Prometheus", icon: Activity },
     { name: "Grafana", icon: ChartNoAxesCombined },
-    { name: "Playwright", icon: TestTube2 },
   ],
-  practices: ["Query optimization", "Unit testing", "End-to-end testing"],
+  practices: ["Query optimization", "Automated testing in CI"],
   navbar: [
     { href: "/", icon: House, label: "Home" },
     { href: "/cv", icon: FileText, label: "Resume" },
@@ -215,7 +215,7 @@ export const DATA = {
       end: undefined,
       description:
         "Build and maintain Laravel/Angular SaaS features for 8+ enterprise clients. Improved query performance by up to 95%, cut large Excel exports to under 10 seconds, and lead development for one client.",
-      technologies: ["Laravel", "PHP", "Angular", "TypeScript", "SQL", "Go", "Python", "Playwright", "AWS"],
+      technologies: ["Laravel", "PHP", "Angular", "TypeScript", "SQL", "Go", "Python", "AWS"],
     },
     {
       company: CV.work[0].company,
@@ -303,7 +303,7 @@ export const DATA = {
       dates: CV.contributions[0].dates,
       active: true,
       description:
-        "Contributed a sortable resources page to BetterGov PH’s SALN Tracker, delivered through a reviewed and merged 28-file pull request.",
+        "Built the public resources page for BetterGov PH’s SALN Tracker, a civic-tech site for officials’ asset declarations, with sortable resource cards driven by structured JSON metadata (2 merged PRs).",
       technologies: ["React", "TypeScript"],
       kind: "contribution",
       links: [
